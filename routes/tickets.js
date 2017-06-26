@@ -4,14 +4,9 @@ var express = require('express'),
 
 /* GET tickets from jiraStat mongoDB */
 router.get('/', function(req, res, next) {
-		let tickets = mongo.find();
-    res.json([{
-        id: 1,
-        username: 'lorem1'
-    }, {
-        id: 2,
-        username: 'lorem2'
-    }]);
+    mongo.find('tickets', {}, function(results) {
+        res.json(results);
+    });
 });
 
 module.exports = router;

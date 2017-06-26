@@ -5,7 +5,7 @@ class Tables extends Component {
   state = {users: []}
 
   componentDidMount() {
-    fetch('/tickets')
+    fetch('/api/tickets')
       .then(res => res.json())
       .then(users => this.setState({ users }));
   }

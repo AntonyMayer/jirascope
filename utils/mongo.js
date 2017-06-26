@@ -18,7 +18,7 @@ module.exports = {
      * @param {object} [target={}] 
      * @return {array} docs matching request
      */
-    find(collection = "tickets", target = {}) {
+    find(collection = "tickets", target = {}, callback) {
         var config = {
             collection: collection,
             target: target
@@ -28,7 +28,7 @@ module.exports = {
             findDocuments(db, config, function(docs) {
                 console.log(`Docs found: ${docs.length}`);
                 db.close();
-                return docs;
+                callback(docs);
             });
         });
     }
