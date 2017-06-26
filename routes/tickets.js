@@ -2,15 +2,15 @@ var express = require('express'),
     router = express.Router(),
     mongo = require('../utils/mongo');
 
-/* GET users listing. */
+/* GET tickets from jiraStat mongoDB */
 router.get('/', function(req, res, next) {
-		mongo.find();
+		let tickets = mongo.find();
     res.json([{
         id: 1,
-        username: docs[0].key
+        username: 'lorem1'
     }, {
         id: 2,
-        username: docs.length
+        username: 'lorem2'
     }]);
 });
 
