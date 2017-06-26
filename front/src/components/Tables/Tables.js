@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import './App.css';
+import './Tables.css';
 
-class App extends Component {
+class Tables extends Component {
   state = {users: []}
 
   componentDidMount() {
-    fetch('/users')
+    fetch('/tickets')
       .then(res => res.json())
       .then(users => this.setState({ users }));
   }
 
   render() {
     return (
-      <div className="app">
-        <h1>Users</h1>
+      <div className="b_table">
+        <h1>Current projects</h1>
         {this.state.users.map(user =>
           <div key={user.id}>{user.username}</div>
         )}
@@ -22,4 +22,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Tables;

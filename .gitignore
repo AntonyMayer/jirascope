@@ -1,19 +1,19 @@
 # dependencies
 /node_modules
-/jirascope/node_modules
+/front/node_modules
 
 # testing
-/jirascope/coverage
+/front/coverage
 
 # production
-/jirascope/build
+/front/build
 
 # misc
-/jirascope/.DS_Store
-/jirascope/.env.local
-/jirascope/.env.development.local
-/jirascope/.env.test.local
-/jirascope/.env.production.local
+/front/.DS_Store
+/front/.env.local
+/front/.env.development.local
+/front/.env.test.local
+/front/.env.production.local
 
-/jirascope/npm-debug.log*
-/jirascope/yarn-debug.log*
+/front/npm-debug.log*
+/front/yarn-debug.log*
