@@ -12,3 +12,12 @@ Start express at **./**
 
 Start react at **./jirascope**
 `$ npm run start`
+
+## API
+
+**Tickets**
+
+|  Request | Description  |
+|---|---|
+| /api/tickets  | return json with all tickets  |
+| /api/tickets?status=XXX  | return all tickets with status XXX  |
