@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Tables from './components/Tables/Tables';
+import Page from './components/Page/Page';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Tables />, document.getElementById('root'));
+ReactDOM.render(<Page />, document.getElementById('root'));
 registerServiceWorker();

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './Tables.css';
+import './Table.css';
 
-var data = ['loading'];
+var data = ['Loading...'];
 
-class Tables extends Component {
+class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,13 @@ class Tables extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/tickets?status=open')
+    this.updateInfo();
+    // setInterval(this.updateInfo.bind(this), 5000);
+  }
+
+  updateInfo() {
+    console.log(this.props.data);
+    fetch(`/api/tickets?status=${this.props.data}`)
       .then(res => {
         return res.json();
       })
@@ -35,4 +41,4 @@ class Tables extends Component {
   }
 }
 
-export default Tables;
+export default Table;
