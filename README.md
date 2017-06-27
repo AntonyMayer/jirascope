@@ -13,6 +13,21 @@ Start express at **./**
 Start react at **./jirascope**
 `$ npm run start`
 
+## Components
+
+**Tables**
+
+Accepts multidimensional array to build table `props.data`
+```
+[
+    [cell, cell, ..., cell],
+    [cell, cell, ..., cell],
+    [cell, cell, ..., cell],
+    ...
+    [cell, cell, ..., cell]    
+]
+```
+
 ## API
 
 **Tickets**

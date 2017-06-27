@@ -17,8 +17,7 @@ class Table extends Component {
   }
 
   updateInfo() {
-    console.log(this.props.data);
-    fetch(`/api/tickets?status=${this.props.data}`)
+    this.props.widget()
       .then(res => {
         return res.json();
       })
@@ -34,7 +33,7 @@ class Table extends Component {
   render() {
     return (
       <div className="lorem">
-        <h1>Current projects</h1>
+        <h1>{this.props.name}</h1>
         {data}
       </div>
     );
