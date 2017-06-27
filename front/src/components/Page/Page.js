@@ -17,13 +17,12 @@ class Page extends Component {
   }
 
 //   componentDidMount() {
-    
 //   }
 
   render() {
     return (
       <div>
-          <Table data='inProgress' name='Status: In Progress' widget={ticketsByProject}/>
+          <Table data='inProgress' name='Status: Open, Reopen' widget={ticketsByProject}/>
           {/*<Table data='open' name='Status: Open, Reopen' />*/}
       </div>
     );

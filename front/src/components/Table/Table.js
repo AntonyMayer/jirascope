@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Cell from './Cell';
 import './Table.css';
 
 var data = ['Loading...'];
@@ -9,6 +10,11 @@ class Table extends Component {
     this.state = {
       date: new Date()
     };
+    this.selectors = {
+      table: 'b_table',
+      row: 'b_table__row',
+      cell: 'b_table__cell'
+    }
   }
 
   componentDidMount() {
@@ -18,13 +24,24 @@ class Table extends Component {
 
   updateInfo() {
     this.props.widget()
-      .then(res => {
-        return res.json();
-      })
-      .then(tickets => {
-        // console.log(tickets.length);
-        data = tickets.map((ticket) => {
-            return <li key={ticket.key.toString()}>Key: {ticket.key}, Status: {ticket.fields.status.name}</li>;
+      .then(rows => {
+        /**
+         * Accepts multidimensional array
+         * 
+         * [
+         *    [cell, cell, ..., cell],  //row
+         *    [cell, cell, ..., cell],  //row
+         *    [cell, cell, ..., cell],  //row
+         *    ...
+         *    [cell, cell, ..., cell]   //row
+         * ]
+         */
+        data = rows.map(row => {
+            return (
+                <div className={this.selectors.row} key={row.toString()}>
+                  <Cell data={row} class={this.selectors.cell} />
+                </div>
+            );
         });
         this.setState({ date: new Date() });
       });
@@ -34,7 +51,9 @@ class Table extends Component {
     return (
       <div className="lorem">
         <h1>{this.props.name}</h1>
-        {data}
+        <div className={this.selectors.row}>
+          {data}
+        </div>
       </div>
     );
   }
