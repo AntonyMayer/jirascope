@@ -1,22 +1,35 @@
 import React, { Component } from 'react';
 import './Tables.css';
 
+var data = ['loading'];
+
 class Tables extends Component {
-  state = {users: []}
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: new Date()
+    };
+  }
 
   componentDidMount() {
-    fetch('/api/tickets')
-      .then(res => res.json())
-      .then(users => this.setState({ users }));
+    fetch('/api/tickets?status=open')
+      .then(res => {
+        return res.json();
+      })
+      .then(tickets => {
+        // console.log(tickets.length);
+        data = tickets.map((ticket) => {
+            return <li key={ticket.key.toString()}>Key: {ticket.key}, Status: {ticket.fields.status.name}</li>;
+        });
+        this.setState({ date: new Date() });
+      });
   }
 
   render() {
     return (
-      <div className="b_table">
+      <div className="lorem">
         <h1>Current projects</h1>
-        {this.state.users.map(user =>
-          <div key={user.id}>{user.username}</div>
-        )}
+        {data}
       </div>
     );
   }
