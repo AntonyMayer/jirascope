@@ -27,7 +27,7 @@ Accepts multidimensional array to build table `props.data`
     [cell, cell, ..., cell]    
 ]
 ```
-
+`[props.name]` - table header
 ## API
 
 **Tickets**
@@ -35,4 +35,7 @@ Accepts multidimensional array to build table `props.data`
 |  Request | Description  |
 |---|---|
 | /api/tickets  | return json with all tickets  |
-| /api/tickets?status=XXX  | return all tickets with status XXX  |
+| /api/tickets?status=XXX  | return all tickets with status XXX
+
+*open*
+*inProgress*  |
