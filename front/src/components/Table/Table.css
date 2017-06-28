@@ -1,11 +1,12 @@
 .b_table {
   display: table;
+  width: 100vw;
   margin: 1.5rem;
   margin: 1.5rem auto;
   border-spacing: 0px;
   box-shadow: 0 0 2.3rem #777; }
 
-.b_table__h2 {
+.b_table__title {
   margin: 1.5rem;
   text-transform: uppercase;
   text-shadow: 0 0 2.3rem #777;

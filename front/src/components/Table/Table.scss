@@ -5,6 +5,7 @@ $border: 1px solid #fff;
 $fontIncrement: 1.2rem;
 .b_table {
     display: table;
+    width: 100vw;
     margin: $spacing;
     @if ($align=='center') {
         margin: $spacing auto;
@@ -14,7 +15,7 @@ $fontIncrement: 1.2rem;
     box-shadow: $shadow;
 }
 
-.b_table__h2 {
+.b_table__title {
     margin: $spacing;
     text: {
         transform: uppercase;

@@ -6,7 +6,7 @@ var express = require('express'),
 router.get('/', function(req, res, next) {
 
     console.log(req.query);
-	
+
 	/**
 	 * CHEATLIST Status's IDs:
 	 * 
@@ -24,20 +24,21 @@ router.get('/', function(req, res, next) {
 	 * 11076    "Ready for Live"
 	 */
 
-	// handle ticket status requests (if none indicated returns open/reopen)
 	let query = {};
 
+	// handle ticket status requests (if none indicated returns all)
 	if (req.query.status) {
 		query["fields.status.id"] = {
-			$in: req.query.status.length ? req.query.status.split(' ') : ['1', '4']
+			$in: req.query.status.split(' ')
 		};
 	}
+	// handle ticket asignee requests (if none indicated returns all)	
 	if (req.query.assignee) {
 		query["fields.assignee.key"] = {
-			$in: req.query.assignee.length ? req.query.assignee.split(' ') : process.env.USER
+			$in: req.query.assignee.split(' ')
 		};
 	}
-	
+	console.log(query);
 	mongo.find('tickets', query, function(results) {
         res.json(results);
     });

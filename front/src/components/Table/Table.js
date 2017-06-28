@@ -13,7 +13,8 @@ class Table extends Component {
     this.selectors = {
       table: 'b_table',
       row: 'b_table__row',
-      cell: 'b_table__cell'
+      cell: 'b_table__cell',
+      title: 'b_table__title'
     }
   }
 
@@ -48,7 +49,7 @@ class Table extends Component {
   render() {
     return (
       <div className="lorem">
-        <h1>{this.props.name}</h1>
+        <h1 className={this.selectors.title}>{this.props.name}</h1>
         <div className={this.selectors.table}>
           {data}
         </div>

@@ -1,5 +1,6 @@
 export default function() {
-    return fetch(`/api/tickets`)
+    console.log('this');
+    return fetch(`/api/tickets${window.location.search}`)
         .then(res => {
             return res.json();
         })
