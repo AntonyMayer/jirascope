@@ -4,48 +4,31 @@ var express = require('express'),
 
 /* GET tickets from jiraStat mongoDB */
 router.get('/', function(req, res, next) {
-	console.log(req.query.status);
-	switch (req.query.status) {
-		/**
-		 * CHEATLIST Status's IDs:
-		 * 
-		 * 1        "Open"
-		 * 4        "Reopened"
-		 * 6        "Closed"
-		 * 10008    "Ready for Test"
-		 * 10035    "Blocked"
-		 * 10037    "In Progress"
-		 * 10076    "Dev Complete"
-		 * 10976    "Developer Test"
-		 * 10678    "Parking Lot"
-		 * 10977    "Assets Tridion Publishing"
-		 * 11276    "HTML Tridion Publishing"
-		 * 11076    "Ready for Live"
-		 */
-		case 'open':
-			mongo.find('tickets', {"fields.status.id": { $in: ["1", "4"]} }, function(results) {
-					res.json(results);
-			});
-			break;
 
-		case 'inProgress':
-			mongo.find('tickets', {"fields.status.id": "10037" }, function(results) {
-					res.json(results);
-			});
-			break;
+    console.log(req.query);
 
-		case 'open inProgress':
-		case 'inProgress open':
-			mongo.find('tickets', {"fields.status.id": { $in: ["1", "4", "10037"]} }, function(results) {
-					res.json(results);
-			});
-			break;
+	/**
+	 * CHEATLIST Status's IDs:
+	 * 
+	 * 1        "Open"
+	 * 4        "Reopened"
+	 * 6        "Closed"
+	 * 10008    "Ready for Test"
+	 * 10035    "Blocked"
+	 * 10037    "In Progress"
+	 * 10076    "Dev Complete"
+	 * 10976    "Developer Test"
+	 * 10678    "Parking Lot"
+	 * 10977    "Assets Tridion Publishing"
+	 * 11276    "HTML Tridion Publishing"
+	 * 11076    "Ready for Live"
+	 */
 
-		default:
-			mongo.find('tickets', {}, function(results) {
-					res.json(results);
-			});
-	}
+	// handle ticket status requests
+	let status = req.query.status.length ? req.query.status.split(' ') : ['1', '4'];
+	mongo.find('tickets', { "fields.status.id": { $in: status } }, function(results) {
+        res.json(results);
+    });
 
 });
 
