@@ -1,0 +1,8 @@
+.b_table {
+  display: table; }
+
+.b_table__row {
+  display: table-row; }
+
+.b_table__cell {
+  display: table-cell; }

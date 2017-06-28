@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-class Cell extends Component {
+class Row extends Component {
   constructor(props) {
     super(props);
     this.state = {
       date: new Date()
     };
-    //accepts array and builds cells for table row
+    //accepts array and builds rows for tables
     this.data = props.data.map((element, index) => {
         return (
-            <div className={props.class} key={(this.props.rowIndex + index).toString()}>
+            <div className={this.props.selectors.cell} key={(this.props.rowIndex + index).toString()}>
                 {element}
             </div>
         );
@@ -18,11 +18,11 @@ class Cell extends Component {
 
   render() {
     return (
-        <div>
+        <div className={this.props.selectors.row}>
             {this.data}
         </div>
     );
   }
 }
 
-export default Cell;
+export default Row;

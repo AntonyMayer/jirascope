@@ -17,7 +17,7 @@ Start react at **./jirascope**
 
 **Tables**
 
-Accepts multidimensional array to build table `props.data`
+Accepts multidimensional array to build table `props.widget` => reference to mjs 
 ```
 [
     [cell, cell, ..., cell],

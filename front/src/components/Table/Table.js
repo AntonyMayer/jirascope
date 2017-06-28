@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Cell from './Cell';
+import Row from './Row';
 import './Table.css';
 
 var data = ['Loading...'];
@@ -38,9 +38,7 @@ class Table extends Component {
          */
         data = rows.map((row, index) => {
             return (
-                <div className={this.selectors.row} key={row.toString()}>
-                  <Cell data={row} class={this.selectors.cell} rowIndex={index}/>
-                </div>
+                   <Row data={row} selectors={this.selectors} rowIndex={index} key={row.toString()}/>
             );
         });
         this.setState({ date: new Date() });
@@ -51,7 +49,7 @@ class Table extends Component {
     return (
       <div className="lorem">
         <h1>{this.props.name}</h1>
-        <div className={this.selectors.row}>
+        <div className={this.selectors.table}>
           {data}
         </div>
       </div>
