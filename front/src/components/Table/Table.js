@@ -36,10 +36,10 @@ class Table extends Component {
          *    [cell, cell, ..., cell]   //row
          * ]
          */
-        data = rows.map(row => {
+        data = rows.map((row, index) => {
             return (
                 <div className={this.selectors.row} key={row.toString()}>
-                  <Cell data={row} class={this.selectors.cell} />
+                  <Cell data={row} class={this.selectors.cell} rowIndex={index}/>
                 </div>
             );
         });

@@ -18,9 +18,23 @@ export default function() {
 
             //fill table 
             for (let project in projects) {
-                // console.log(projects[project]);
-                let row = [project, projects[project]['opened']];
-                table.push(row);
+                console.log(projects[project]);
+                if (Number(projects[project]['opened']) > 0) {
+                    let row = [
+                        projects[project]['name'],          //full project name
+                        project,                            //project key
+                        projects[project]['opened'],        //number tickets
+                        projects[project]['inProgress'],    
+                        projects[project]['devComplete'],   
+                        projects[project]['devTest'],       
+                        projects[project]['tridion'],       
+                        projects[project]['readyForTest'],  
+                        projects[project]['blocked'],       
+                        projects[project]['closed'],        
+                        projects[project]['assignees'].join(', ')     //list of assignees for project                
+                    ];
+                    table.push(row);
+                }
             }
 
             /**
@@ -40,7 +54,7 @@ export default function() {
 
 function createRecord(ticket, projects) {
     projects[ticket.fields.project.key] = {
-        name: undefined,
+        name: ticket.fields.project.name,
         project: ticket.fields.project.key,
         opened: 0,
         inProgress: 0,
@@ -80,32 +94,32 @@ function updateRecord(ticket, projects) {
         currentAssignee = ticket.fields.assignee.key;
 
     switch (status) {
-        case 1:
-        case 4:
+        case "1":
+        case "4":
             project.opened++;
             updateAssineeInitialsList(project, currentAssignee);
             break;
-        case 10008:
+        case "10008":
             project.readyForTest++;
             break;
-        case 10037:
+        case "10037":
             project.inProgress++;
             updateAssineeInitialsList(project, currentAssignee);
             break;
-        case 10076:
+        case "10076":
             project.devComplete++;
             break;
-        case 10976:
+        case "10976":
             project.devTest++;
             break;
-        case 11276:
-        case 10977:
+        case "11276":
+        case "10977":
             project.tridion++;
             break;
-        case 10035:
+        case "10035":
             project.blocked++;
             break;
-        case 6:
+        case "6":
             project.closed++;
             break;
 

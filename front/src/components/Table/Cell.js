@@ -9,7 +9,7 @@ class Cell extends Component {
     //accepts array and builds cells for table row
     this.data = props.data.map((element, index) => {
         return (
-            <div className={props.class} key={(element + index).toString()}>
+            <div className={props.class} key={(this.props.rowIndex + index).toString()}>
                 {element}
             </div>
         );
