@@ -1,19 +1,19 @@
 # dependencies
 /node_modules
-/front/node_modules
+/app/node_modules
 
 # testing
-/front/coverage
+/app/coverage
 
 # production
-/front/build
+/app/build
 
 # misc
-/front/.DS_Store
-/front/.env.local
-/front/.env.development.local
-/front/.env.test.local
-/front/.env.production.local
+/app/.DS_Store
+/app/.env.local
+/app/.env.development.local
+/app/.env.test.local
+/app/.env.production.local
 
-/front/npm-debug.log*
-/front/yarn-debug.log*
+/app/npm-debug.log*
+/app/yarn-debug.log*
