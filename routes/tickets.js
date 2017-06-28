@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 	 * 11076    "Ready for Live"
 	 */
 
-	// handle ticket status requests
+	// handle ticket status requests (if none indicated returns open/reopen)
 	let status = req.query.status.length ? req.query.status.split(' ') : ['1', '4'];
 	mongo.find('tickets', { "fields.status.id": { $in: status } }, function(results) {
         res.json(results);

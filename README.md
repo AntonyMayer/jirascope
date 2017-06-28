@@ -35,4 +35,4 @@ Accepts multidimensional array to build table `props.widget` => reference to mjs
 |  Request | Description  |
 |---|---|
 | /api/tickets  | return json with all tickets  |
-| /api/tickets?status=XXX  | return all tickets with status XXX (*open, inProgress*)  |
+| /api/tickets?status=XXX  | return all tickets with status id XXX (*1 = open, 4 = reopen and etc*)  |
