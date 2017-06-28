@@ -105,8 +105,8 @@ function createRecord(ticket, projects) {
     }
 }
 
-
 function updateRecord(ticket, projects, total) {
+
     /**
      * CHEATLIST Transition's IDs:
      * 

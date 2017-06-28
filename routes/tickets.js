@@ -6,7 +6,7 @@ var express = require('express'),
 router.get('/', function(req, res, next) {
 
     console.log(req.query);
-
+	
 	/**
 	 * CHEATLIST Status's IDs:
 	 * 
@@ -25,8 +25,20 @@ router.get('/', function(req, res, next) {
 	 */
 
 	// handle ticket status requests (if none indicated returns open/reopen)
-	let status = req.query.status.length ? req.query.status.split(' ') : ['1', '4'];
-	mongo.find('tickets', { "fields.status.id": { $in: status } }, function(results) {
+	let query = {};
+
+	if (req.query.status) {
+		query["fields.status.id"] = {
+			$in: req.query.status.length ? req.query.status.split(' ') : ['1', '4']
+		};
+	}
+	if (req.query.assignee) {
+		query["fields.assignee.key"] = {
+			$in: req.query.assignee.length ? req.query.assignee.split(' ') : process.env.USER
+		};
+	}
+	
+	mongo.find('tickets', query, function(results) {
         res.json(results);
     });
 
