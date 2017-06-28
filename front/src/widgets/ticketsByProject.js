@@ -1,6 +1,8 @@
+import search from './search';
+
 export default function() {
-    console.log('this');
-    return fetch(`/api/tickets${window.location.search}`)
+    console.log(search);
+    return fetch(`/api/tickets${search}`)
         .then(res => {
             return res.json();
         })

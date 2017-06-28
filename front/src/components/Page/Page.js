@@ -22,7 +22,7 @@ class Page extends Component {
   render() {
     return (
       <div>
-          <Table name='Status: All' widget={ticketsByProject}/>
+          <Table name='Tickets by project' widget={ticketsByProject}/>
       </div>
     );
   }
