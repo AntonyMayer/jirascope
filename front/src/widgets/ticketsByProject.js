@@ -208,12 +208,12 @@ function updateAssineeList(project, currentAssignee) {
 
 function clearAssigneeName(user) {
     let firstName = user.split('.')[0];
-    return firstName.charAt(0).toUpperCase() + firstName.slice(1);
+    return firstName.charAt(0).toUpperCase() + firstName.slice(1, 4);
 }
 
 function clearProjectName(project) {
-    if (project.length > 40) {
-        return project.slice(0, 40).concat('\u2026');
+    if (project.length > 30) {
+        return project.slice(0, 30).concat('\u2026');
     } else {
         return project;
     }

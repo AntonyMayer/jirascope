@@ -1,11 +1,67 @@
+$spacing: 1.5rem;
+$shadow: 0 0 2.3rem #777;
+$align: center;
+$border: 1px solid #fff;
+$fontIncrement: 1.2rem;
 .b_table {
-  display: table;
+    display: table;
+    margin: $spacing;
+    @if ($align=='center') {
+        margin: $spacing auto;
+    }
+    border-spacing: 0px;
+    border: 1rem solid #fff;
+    box-shadow: $shadow;
+}
+
+.b_table__h2 {
+    margin: $spacing;
+    text: {
+        transform: uppercase;
+        shadow: $shadow;
+        align: $align;
+    }
 }
 
 .b_table__row {
-  display: table-row;
+    display: table-row;
+    transition: all .8s;
+    cursor: pointer;
+    &:hover {
+        background: rgba(0, 0, 0, .4);
+        transition: all .2s;
+    }
+    &:nth-of-type(1),
+    &:nth-last-of-type(1) {
+        font-weight: bold;
+        background: rgba(0, 0, 0, .1);
+    }
 }
 
 .b_table__cell {
-  display: table-cell;
+    display: table-cell;
+    border-top: $border;
+    padding: $spacing;
+    text-align: $align;
+    &:nth-of-type(1) {
+        min-width: 20rem;
+        text-align: left;
+        font-weight: bold;
+        background: rgba(0, 0, 0, .1);
+    }
+    &:nth-of-type(2) {
+        text-align: left;
+        font-weight: bold;
+        background: rgba(0, 0, 0, .1);
+        border-right: $border;
+    }
+    &--red {
+        font-size: calc(1rem + #{$fontIncrement});
+        padding: ($spacing - $fontIncrement) $spacing;
+        background: rgba(255, 0, 0, .4);
+        border: {
+            left: $border;
+            right: $border;
+        }
+    }
 }
