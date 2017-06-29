@@ -1,7 +1,8 @@
 ## Notes
 
 **Ports**
-
+|Description|Port|
+|---|---|
 |Dev|3000|
 |Proxy|3311|
 
