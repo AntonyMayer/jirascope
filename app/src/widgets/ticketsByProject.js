@@ -1,5 +1,7 @@
+import Jirascope from '../jirascope';
+
 export default function() {
-    return fetch(`/api/tickets${window.jirascope.search.current}`)
+    return fetch(`/api/tickets${Jirascope.search.current}`)
         .then(res => {
             return res.json();
         })
