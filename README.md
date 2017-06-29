@@ -1,30 +1,41 @@
 ## Notes
 
-```
-    expres port:3311
-    jirascope react proxy:3311
-```
-
-**Global namespace** 
+**Ports**
 
 ```
-    ./jirascope.js
+    dev:    3000
+    proxy:  3311
 ```
 
+**Config & namespace object** 
+
+```
+    ./app/jirascope
+```
 
 ## Start
 
-Start express at **./**
-`$ npm run start`
+There are two servers:
 
-Start react at **./jirascope**
-`$ npm run start`
+|  Name | Location  | Script |
+|---|---|---|
+| Express |./| npm run start |
+| Webpack |./app| npm run start | 
 
 ## Components
 
+**Page**
+
+Builds applayout
+
 **Tables**
 
-Accepts multidimensional array to build table `props.widget` => reference to mjs 
+Builds tables
+
+`props.widget` - reference specific module to get the data for table
+`props.name` - table header [optional]
+
+Accepts multidimensional array to build table 
 ```
 [
     [cell, cell, ..., cell],
@@ -34,8 +45,18 @@ Accepts multidimensional array to build table `props.widget` => reference to mjs
     [cell, cell, ..., cell]    
 ]
 ```
-`[props.name]` - table header
-## API
+
+**Rows**
+
+Builds rows for table...
+
+**Filters**
+
+Updating GET params, change location, update history
+
+`props.event` - method to update **Table** component
+
+## express API
 
 **Tickets**
 
