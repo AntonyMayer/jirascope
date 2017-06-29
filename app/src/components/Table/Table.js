@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Row from './Row';
+import Filters from '../Filters/Filters';
 import './Table.css';
 
 var data = ['Loading...'];
@@ -20,18 +21,18 @@ class Table extends Component {
 
   componentDidMount() {
     this.updateInfo();
-    // setInterval(this.updateInfo.bind(this), 5000);
     setInterval(_=>{
-      console.log(`Updateing....${String(this.props.name).toUpperCase()}`);
       this.updateInfo();
-      this.setState({
-        date: new Date()
-      });
     }, 5000);
+  }
+
+  test() {
+    console.log('this');
   }
 
   updateInfo() {
     //using a passed method to get data
+    console.log(`Updateing....${String(this.props.name).toUpperCase()}`);
     this.props.widget()
       .then(rows => {
         /**
@@ -57,7 +58,8 @@ class Table extends Component {
   render() {
     return (
       <div className="lorem">
-        <h1 className={this.selectors.title}>{this.props.name}</h1>
+        <h1 className={this.selectors.title} onClick={this.test}>{this.props.name}</h1>
+        <Filters events={this.test} />
         <div className={this.selectors.table}>
           {data}
         </div>

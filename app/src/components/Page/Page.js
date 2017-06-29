@@ -19,15 +19,6 @@ class Page extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   setInterval(_=>{
-  //     console.log('Updateing....');
-  //     this.setState({
-  //       date: new Date()
-  //     });
-  //   }, 5000);
-  // }
-
   render() {
     return (
       <div>

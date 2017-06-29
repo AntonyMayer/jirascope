@@ -172,7 +172,7 @@ function updateRecord(ticket, projects, total) {
             total.closed++;
             break;
         default:
-            console.log(ticket.key);
+            // console.log(ticket.key);
             break;
     }
 }
