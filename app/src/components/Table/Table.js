@@ -8,9 +8,7 @@ var data = ['Loading...'];
 class Table extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      date: new Date()
-    };
+    this.state = { date: new Date() };
     this.selectors = {
       table: 'b_table',
       row: 'b_table__row',
@@ -24,10 +22,6 @@ class Table extends Component {
     setInterval(_=>{
       this.updateInfo();
     }, 5000);
-  }
-
-  test() {
-    console.log('this');
   }
 
   updateInfo() {
@@ -48,7 +42,7 @@ class Table extends Component {
          */
         data = rows.map((row, index) => {
             return (
-                   <Row data={row} selectors={this.selectors} rowIndex={index} key={row.toString()}/>
+              <Row data={row} selectors={this.selectors} rowIndex={index} key={row.toString()}/>
             );
         });
         this.setState({ date: new Date() });
@@ -58,8 +52,10 @@ class Table extends Component {
   render() {
     return (
       <div className="lorem">
-        <h1 className={this.selectors.title} onClick={this.test}>{this.props.name}</h1>
-        <Filters events={this.test} />
+        <h1 className={this.selectors.title}>{this.props.name}</h1>
+        <div >
+          <Filters event={this.updateInfo.bind(this)} />
+        </div>
         <div className={this.selectors.table}>
           {data}
         </div>

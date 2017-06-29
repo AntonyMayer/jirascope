@@ -8,9 +8,14 @@ class Filter extends Component {
     };
   }
 
+  test() {
+      this.props.event();
+      console.log('clicked');
+  }
+
   render() {
     return (
-        <div className="Lorem" onClick={this.props.events}>
+        <div className="Lorem" onClick={this.test.bind(this)}>
             Lorems
         </div>
     );
