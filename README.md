@@ -2,10 +2,8 @@
 
 **Ports**
 
-```
-    dev:    3000
-    proxy:  3311
-```
+|Dev|3000|
+|Proxy|3311|
 
 **Config & namespace object** 
 
@@ -17,7 +15,7 @@
 
 There are two servers:
 
-|  Name | Location  | Script |
+|  Type | Location  | Script |
 |---|---|---|
 | Express |./| npm run start |
 | Webpack |./app| npm run start | 
@@ -26,13 +24,14 @@ There are two servers:
 
 **Page**
 
-Builds applayout
+Builds app layout
 
 **Tables**
 
-Builds tables
+Builds tables. Contains all css selectors for table and its elements.
 
 `props.widget` - reference specific module to get the data for table
+
 `props.name` - table header [optional]
 
 Accepts multidimensional array to build table 
@@ -48,7 +47,11 @@ Accepts multidimensional array to build table
 
 **Rows**
 
-Builds rows for table...
+Builds rows for table.
+
+`props.data` - array containing data for the row
+`props.selectors` - data for css selectors
+`props.rowIndex` - row index
 
 **Filters**
 
