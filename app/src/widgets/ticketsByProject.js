@@ -58,7 +58,7 @@ export default function() {
                     projects[project]['closed'],
                     projects[project]['assignees'].join(', ') //list of assignees                
                 ];
-                table.push(row);
+                if (checkRow(row.slice(2,9))) table.push(row);
             }
 
             //add totals to the table
@@ -72,7 +72,8 @@ export default function() {
                 total['tridion'],
                 total['readyForTest'],
                 total['blocked'],
-                total['closed'],
+                '-',
+                // total['closed'],
                 '-'
             ]);
 
@@ -166,11 +167,12 @@ function updateRecord(ticket, projects, total) {
             total.blocked++;
             break;
         case "6":
+        case "10038":
             project.closed++;
             total.closed++;
             break;
-
         default:
+            console.log(ticket.key);
             break;
     }
 }
@@ -193,6 +195,18 @@ function checkTicketFields(ticket) {
         }
     }
     return ticket;
+}
+
+//eliminate rows with unidentified ticket status and other weird staff (i.e. 0 0 0 0 0 0 0 rows)
+function checkRow(row) {
+    let totalTickets = 0;
+    for (let elm of row) {
+        if (elm > 0) {
+            totalTickets++;
+        }
+    } 
+    if (totalTickets > 0) return true;
+    return false;
 }
 
 /**

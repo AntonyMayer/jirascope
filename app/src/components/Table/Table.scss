@@ -1,15 +1,13 @@
-$spacing: 1.5rem;
+$spacing: .8rem;
 $shadow: 0 0 2.3rem #777;
-$align: center;
 $border: 1px solid #fff;
 $fontIncrement: 1.2rem;
+
 .b_table {
     display: table;
     width: 100vw;
     margin: $spacing;
-    @if ($align=='center') {
-        margin: $spacing auto;
-    }
+    margin: $spacing auto;
     border-spacing: 0px;
     // border: 1rem solid #fff;
     box-shadow: $shadow;
@@ -20,7 +18,7 @@ $fontIncrement: 1.2rem;
     text: {
         transform: uppercase;
         shadow: $shadow;
-        align: $align;
+        align: left;
     }
 }
 
@@ -35,7 +33,7 @@ $fontIncrement: 1.2rem;
     &:nth-of-type(1),
     &:nth-last-of-type(1) {
         font-weight: bold;
-        background: rgba(0, 0, 0, .1);
+        background: rgba(0, 0, 0, .4);
     }
 }
 
@@ -43,7 +41,7 @@ $fontIncrement: 1.2rem;
     display: table-cell;
     border-top: $border;
     padding: $spacing;
-    text-align: $align;
+    text-align: center;
     &:nth-of-type(1) {
         text-align: left;
         font-weight: bold;

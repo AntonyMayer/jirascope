@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
 			$in: req.query.assignee.split(' ')
 		};
 	}
-	// console.log(query);
+	//send query to server
 	mongo.find('tickets', query, function(results) {
         res.json(results);
     });

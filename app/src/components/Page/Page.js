@@ -18,8 +18,14 @@ class Page extends Component {
     };
   }
 
-//   componentDidMount() {
-//   }
+  componentDidMount() {
+    setInterval(_=>{
+      console.log('Updateing....');
+      this.setState({
+        date: new Date()
+      });
+    }, 5000);
+  }
 
   render() {
     return (

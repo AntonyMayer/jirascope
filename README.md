@@ -9,10 +9,6 @@
 
 ```
     ./jirascope.js
-    jirascope
-    jirascope.defaults 
-    jirascope.utils 
-
 ```
 
 
