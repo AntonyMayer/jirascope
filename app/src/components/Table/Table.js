@@ -21,9 +21,17 @@ class Table extends Component {
   componentDidMount() {
     this.updateInfo();
     // setInterval(this.updateInfo.bind(this), 5000);
+    setInterval(_=>{
+      console.log(`Updateing....${String(this.props.name).toUpperCase()}`);
+      this.updateInfo();
+      this.setState({
+        date: new Date()
+      });
+    }, 5000);
   }
 
   updateInfo() {
+    //using a passed method to get data
     this.props.widget()
       .then(rows => {
         /**

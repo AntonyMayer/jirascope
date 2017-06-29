@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import Jirascope from '../../jirascope';
 
 //components
 import Table from '../Table/Table';
@@ -18,14 +19,14 @@ class Page extends Component {
     };
   }
 
-  componentDidMount() {
-    setInterval(_=>{
-      console.log('Updateing....');
-      this.setState({
-        date: new Date()
-      });
-    }, 5000);
-  }
+  // componentDidMount() {
+  //   setInterval(_=>{
+  //     console.log('Updateing....');
+  //     this.setState({
+  //       date: new Date()
+  //     });
+  //   }, 5000);
+  // }
 
   render() {
     return (
