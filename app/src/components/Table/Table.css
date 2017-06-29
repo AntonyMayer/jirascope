@@ -29,7 +29,6 @@
   padding: 1.5rem;
   text-align: center; }
   .b_table__cell:nth-of-type(1) {
-    min-width: 20rem;
     text-align: left;
     font-weight: bold;
     background: rgba(0, 0, 0, 0.1); }

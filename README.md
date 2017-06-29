@@ -5,6 +5,17 @@
     jirascope react proxy:3311
 ```
 
+**Global namespace** 
+
+```
+    ./jirascope.js
+    jirascope
+    jirascope.defaults 
+    jirascope.utils 
+
+```
+
+
 ## Start
 
 Start express at **./**

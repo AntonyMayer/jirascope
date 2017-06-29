@@ -5,7 +5,7 @@ var express = require('express'),
 /* GET tickets from jiraStat mongoDB */
 router.get('/', function(req, res, next) {
 
-    console.log(req.query);
+    // console.log(req.query);
 
 	/**
 	 * CHEATLIST Status's IDs:
@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
 			$in: req.query.assignee.split(' ')
 		};
 	}
-	console.log(query);
+	// console.log(query);
 	mongo.find('tickets', query, function(results) {
         res.json(results);
     });
