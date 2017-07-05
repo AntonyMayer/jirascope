@@ -143,6 +143,7 @@ function updateRecord(ticket, projects, total) {
         case "10008":
             project.readyForTest++;
             total.readyForTest++;
+            updateAssineeList(project, currentAssignee);
             break;
         case "10037":
             project.inProgress++;
@@ -152,19 +153,23 @@ function updateRecord(ticket, projects, total) {
         case "10076":
             project.devComplete++;
             total.devComplete++;
+            updateAssineeList(project, currentAssignee);
             break;
         case "10976":
             project.devTest++;
             total.devTest++;
+            updateAssineeList(project, currentAssignee);
             break;
         case "11276":
         case "10977":
             project.tridion++;
             total.tridion++;
+            updateAssineeList(project, currentAssignee);
             break;
         case "10035":
             project.blocked++;
             total.blocked++;
+            updateAssineeList(project, currentAssignee);
             break;
         case "6":
         case "10038":

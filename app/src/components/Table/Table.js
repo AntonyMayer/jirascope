@@ -51,7 +51,7 @@ class Table extends Component {
 
   render() {
     return (
-      <div className="lorem">
+      <div className="widget widget--table">
         <h1 className={this.selectors.title}>{this.props.name}</h1>
         <div >
           <Filters event={this.updateInfo.bind(this)} />
