@@ -1,6 +1,7 @@
 import Jirascope from '../jirascope';
 
 export default function() {
+    Jirascope.setState(true);
     return fetch(`/api/tickets${Jirascope.search.current}`)
         .then(res => {
             return res.json();
@@ -229,7 +230,7 @@ function updateAssineeList(project, currentAssignee) {
 
 function clearAssigneeName(user) {
     let firstName = user.split('.')[0];
-    return firstName.charAt(0).toUpperCase() + firstName.slice(1, 4);
+    return firstName.charAt(0).toUpperCase() + firstName.slice(1, 10);
 }
 
 function clearProjectName(project) {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Jirascope from '../../jirascope';
 import Row from './Row';
 import Filters from '../Filters/Filters';
 import './Table.css';
@@ -8,20 +9,28 @@ var data = ['Loading...'];
 class Table extends Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date() };
+    this.state = {
+      current: Jirascope.search.current
+    };
     this.selectors = {
       table: 'b_table',
       row: 'b_table__row',
       cell: 'b_table__cell',
       title: 'b_table__title'
     }
+    this.updateInfo = this.updateInfo.bind(this);
   }
 
   componentDidMount() {
     this.updateInfo();
-    setInterval(_=>{
-      this.updateInfo();
-    }, 5000);
+    console.log('mount');
+  }
+  componentWillUpdate() {
+    console.log('will');
+  }
+  componentDidUpdate() {
+    // this.updateInfo();
+    console.log('did');    
   }
 
   updateInfo() {
@@ -45,7 +54,9 @@ class Table extends Component {
               <Row data={row} selectors={this.selectors} rowIndex={index} key={row.toString()}/>
             );
         });
-        this.setState({ date: new Date() });
+        this.setState({
+          current: Jirascope.search.current
+        });
       });
   }
 
@@ -54,7 +65,7 @@ class Table extends Component {
       <div className="widget widget--table">
         <h1 className={this.selectors.title}>{this.props.name}</h1>
         <div >
-          <Filters event={this.updateInfo.bind(this)} />
+          <Filters updateWidget={this.updateInfo} />
         </div>
         <div className={this.selectors.table}>
           {data}
