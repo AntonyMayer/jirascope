@@ -11,35 +11,35 @@ class Filter extends Component {
   }
 
   updateFilter() {
-    let teams = document.getElementsByClassName('filter__checkbox'),
-        selected = {
-            dev: teams[0].checked, 
-            qa: teams[1].checked,
-            cp: teams[2].checked
-        };
+    let teams = document.getElementsByClassName('filter__checkbox--team'),
+        teamsArr = [];
 
-    console.log(selected);
-    // Jirascope.updateAssigneeList(Jirascope.teams.qa);
+    if (teams[0].checked) teamsArr = teamsArr.concat(Jirascope.teams.dev);
+    if (teams[1].checked) teamsArr = teamsArr.concat(Jirascope.teams.qa);
+    if (teams[2].checked) teamsArr = teamsArr.concat(Jirascope.teams.cp);
+
+    if(!teamsArr.length) {
+        teamsArr = Jirascope.teams.dev;
+        teams[0].checked = true;
+    }
+
+    Jirascope.updateAssigneeList(teamsArr);
   }
 
   render() {
-      /**
-       * REDO ALL THAT STAFF BELOW AND ABOVE!!!
-       * ADD ANOTHER COMPONENT => INPUT
-       */
     return (
         <div className="filter filter--tables" onChange={this.updateFilter.bind(this)}>
             <div className="filter__trigger">
                 <label htmlFor="dev" className="filter__label">DEV</label>
-                <input id="dev" type="checkbox" className="filter__checkbox"/>
+                <input id="dev" type="checkbox" className="filter__checkbox filter__checkbox--team"/>
             </div>
             <div className="filter__trigger">
                 <label htmlFor="qa" className="filter__label" >QA</label>
-                <input id="qa" type="checkbox" className="filter__checkbox"/>
+                <input id="qa" type="checkbox" className="filter__checkbox filter__checkbox--team"/>
             </div>
             <div className="filter__trigger">
                 <label htmlFor="cp" className="filter__label" >CP</label>
-                <input id="cp" type="checkbox" className="filter__checkbox"/>
+                <input id="cp" type="checkbox" className="filter__checkbox filter__checkbox--team"/>
             </div>
         </div>
     );

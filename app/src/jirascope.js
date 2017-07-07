@@ -22,6 +22,7 @@
 
 class Jirascope {
     constructor() {
+        //default teams
         this.teams = {
             dev: ['dan.granata', 'constantin.pojoga', 'william.ramirez', 'eric.nesser', 'brandon.houghton', 'kyle.mcdonald', 'adrian.kopczewski', 'anton.kuzniatsou', 'matt.wade'],
             qa: ['shelby.jones', 'luke.smarto', 'vasyl.stetsyuk', 'patrick.finn', 'alejandro.molina', 'alyssa.carabez'],
@@ -71,7 +72,7 @@ class Jirascope {
     //assignee methods
     updateAssigneeList(array) {
         this.params.assignee = array;
-        this.setState();
+        this.updateState();
     }
     addAssignee(assignee) {
         this.params.assignee.push(assignee);
@@ -84,6 +85,7 @@ class Jirascope {
     updateState() {
         this.updateHistory();
         this.state = this.getUrlParams();
+        window.dispatchEvent(this.globalUpdate);
     }
 
     //if flag is set to true history object will not be updated    
