@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
+import Checkbox from './Checkbox';
 import Jirascope from '../../jirascope';
 import './Filters.css';
 
-class Filter extends Component {
+class TeamsFilter extends Component {
   constructor(props) {
     super(props);
     this.teams = document.getElementsByClassName('filter__checkbox--team');
     this.state = {
       date: new Date()
     };
+    this.updateFilter = this.updateFilter.bind(this);
   }
 
   componentDidMount() {
-    for (var i = 0, len = this.teams.length; i < len; i++) {
-        if (localStorage.getItem(this.teams[i].id) === "true") {
+    for (let i = 0, len = this.teams.length; i < len; i++) {
+        if (localStorage.getItem(this.teams[i].id) === "true" ||
+            localStorage.getItem(this.teams[i].id) === null) {
             this.teams[i].checked = true;
         }
     }
@@ -22,7 +25,7 @@ class Filter extends Component {
   updateFilter() {
     let teamsArr = [];
 
-    for (var i = 0, len = this.teams.length; i < len; i++) {
+    for (let i = 0, len = this.teams.length; i < len; i++) {
         if (this.teams[i].checked) {
             teamsArr = teamsArr.concat(Jirascope.teams[this.teams[i].id]);
             localStorage.setItem(this.teams[i].id, true);
@@ -31,9 +34,11 @@ class Filter extends Component {
 
     //avoid empty array
     if(!teamsArr.length) {
-        teamsArr = Jirascope.teams.dev;
-        this.teams[0].checked = true;
-        localStorage.setItem(this.teams[0].id, true);
+        for (var i = 0, len = this.teams.length; i < len; i++) {
+            this.teams[i].checked = true;
+            localStorage.setItem(this.teams[i].id, true);
+        }  
+        teamsArr = Jirascope.teams.dev.concat(Jirascope.teams.qa).concat(Jirascope.teams.cp);
     }
 
     Jirascope.updateAssigneeList(teamsArr);
@@ -41,22 +46,16 @@ class Filter extends Component {
 
   render() {
     return (
-        <div className="filter filter--tables" onChange={this.updateFilter.bind(this)}>
-            <div className="filter__trigger">
-                <label htmlFor="dev" className="filter__label">DEV</label>
-                <input id="dev" type="checkbox" className="filter__checkbox filter__checkbox--team"/>
-            </div>
-            <div className="filter__trigger">
-                <label htmlFor="qa" className="filter__label" >QA</label>
-                <input id="qa" type="checkbox" className="filter__checkbox filter__checkbox--team"/>
-            </div>
-            <div className="filter__trigger">
-                <label htmlFor="cp" className="filter__label" >CP</label>
-                <input id="cp" type="checkbox" className="filter__checkbox filter__checkbox--team"/>
+        <div className="filter filter--tables">
+            <p className="filter__title"><b>TEAMS</b> &#9658;</p>
+            <div className="filter__update" onChange={this.updateFilter}>
+                <Checkbox id="dev" group="team" />
+                <Checkbox id="qa" group="team" />
+                <Checkbox id="cp" group="team" />
             </div>
         </div>
     );
   }
 }
 
-export default Filter;
+export default TeamsFilter;

@@ -4,7 +4,7 @@ import Jirascope from '../../jirascope';
 
 //components
 import Table from '../Table/Table';
-import Filters from '../Filters/Teams';
+import TeamsFilter from '../Filters/Teams';
 
 //widgets
 import ticketsByProject from '../../widgets/ticketsByProject';
@@ -35,7 +35,7 @@ class Page extends Component {
   render() {
     return (
       <div>
-          <Filters />
+          <TeamsFilter />
           <Table name='Tickets by project' widget={ticketsByProject}/>
       </div>
     );

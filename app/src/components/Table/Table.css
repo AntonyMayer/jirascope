@@ -1,8 +1,6 @@
 .b_table {
   display: table;
   width: 100vw;
-  margin: 0.8rem;
-  margin: 0.8rem auto;
   border-spacing: 0px;
   box-shadow: 0 0 2.3rem #777; }
 

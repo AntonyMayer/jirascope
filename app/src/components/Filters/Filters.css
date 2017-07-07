@@ -1,6 +1,16 @@
-.filter__trigger {
+.filter {
   display: inline-block;
-  margin: .8rem; }
+  margin: 0.8rem; }
+
+.filter__unit {
+  display: inline-block;
+  margin: 0 0.8rem; }
+
+.filter__update {
+  display: inline-block; }
+
+.filter__title {
+  display: inline-block; }
 
 .filter__checkbox {
-  margin-left: .8rem; }
+  margin-left: 0.8rem; }

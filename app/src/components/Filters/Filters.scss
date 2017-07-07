@@ -1,8 +1,22 @@
-.filter {}
-.filter__trigger {
+$spacing: .8rem;
+
+.filter {
     display: inline-block;
-    margin: .8rem;
+    margin: $spacing;
 }
+.filter__unit {
+    display: inline-block;
+    margin: 0 $spacing;
+}
+
+.filter__update {
+    display: inline-block;
+}
+
+.filter__title {
+    display: inline-block;
+}
+
 .filter__checkbox {
-    margin-left: .8rem;
+    margin-left: $spacing;
 }
