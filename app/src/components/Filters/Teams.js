@@ -5,22 +5,35 @@ import './Filters.css';
 class Filter extends Component {
   constructor(props) {
     super(props);
+    this.teams = document.getElementsByClassName('filter__checkbox--team');
     this.state = {
       date: new Date()
     };
   }
 
+  componentDidMount() {
+    for (var i = 0, len = this.teams.length; i < len; i++) {
+        if (localStorage.getItem(this.teams[i].id) === "true") {
+            this.teams[i].checked = true;
+        }
+    }
+  }
+
   updateFilter() {
-    let teams = document.getElementsByClassName('filter__checkbox--team'),
-        teamsArr = [];
+    let teamsArr = [];
 
-    if (teams[0].checked) teamsArr = teamsArr.concat(Jirascope.teams.dev);
-    if (teams[1].checked) teamsArr = teamsArr.concat(Jirascope.teams.qa);
-    if (teams[2].checked) teamsArr = teamsArr.concat(Jirascope.teams.cp);
+    for (var i = 0, len = this.teams.length; i < len; i++) {
+        if (this.teams[i].checked) {
+            teamsArr = teamsArr.concat(Jirascope.teams[this.teams[i].id]);
+            localStorage.setItem(this.teams[i].id, true);
+        } else localStorage.setItem(this.teams[i].id, false);
+    } 
 
+    //avoid empty array
     if(!teamsArr.length) {
         teamsArr = Jirascope.teams.dev;
-        teams[0].checked = true;
+        this.teams[0].checked = true;
+        localStorage.setItem(this.teams[0].id, true);
     }
 
     Jirascope.updateAssigneeList(teamsArr);

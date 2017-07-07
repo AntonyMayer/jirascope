@@ -30,7 +30,7 @@ class Jirascope {
         }
         this.params = {
             status: [],
-            assignee: this.teams.dev
+            assignee: this.teams.dev.concat(this.teams.qa).concat(this.teams.cp)
         }
         this.search = {
             default: `?status=${this.params.status.join('+')}&assignee=${this.params.assignee.join('+')}`,
