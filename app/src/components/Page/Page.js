@@ -1,8 +1,10 @@
+//globals
 import React, { Component } from 'react';
 import Jirascope from '../../jirascope';
 
 //components
 import Table from '../Table/Table';
+import Filters from '../Filters/Teams';
 
 //widgets
 import ticketsByProject from '../../widgets/ticketsByProject';
@@ -27,12 +29,13 @@ class Page extends Component {
     this.setState({
       current: Jirascope.search.current
     });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() {
     return (
       <div>
+          <Filters />
           <Table name='Tickets by project' widget={ticketsByProject}/>
       </div>
     );

@@ -71,7 +71,7 @@ class Jirascope {
     //assignee methods
     updateAssigneeList(array) {
         this.params.assignee = array;
-        this.updateState();
+        this.setState();
     }
     addAssignee(assignee) {
         this.params.assignee.push(assignee);
@@ -92,7 +92,7 @@ class Jirascope {
         this.params.status = this.state.status;
         this.params.assignee = this.state.assignee;
         this.updateHistory(flag);
-        // window.dispatchEvent(this.globalUpdate);
+        window.dispatchEvent(this.globalUpdate);
         console.log('Jirascope state updated');
     }
 

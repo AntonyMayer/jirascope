@@ -8,17 +8,18 @@ class Filter extends Component {
     this.state = {
       date: new Date()
     };
-    // this.updateFilter = this.updateFilter.bind(this);
   }
 
-  updateWidget() {
-      this.props.updateWidget();
-  }
+  updateFilter() {
+    let teams = document.getElementsByClassName('filter__checkbox'),
+        selected = {
+            dev: teams[0].checked, 
+            qa: teams[1].checked,
+            cp: teams[2].checked
+        };
 
-  updateFilter(id) {
-    //   let filterCheckbox = document.getElementById(id);
-      Jirascope.updateAssigneeList(Jirascope.teams.qa);
-    this.setState({ date: new Date() });
+    console.log(selected);
+    // Jirascope.updateAssigneeList(Jirascope.teams.qa);
   }
 
   render() {
@@ -27,18 +28,18 @@ class Filter extends Component {
        * ADD ANOTHER COMPONENT => INPUT
        */
     return (
-        <div className="filter filter--tables" onClick={this.updateWidget.bind(this)}>
+        <div className="filter filter--tables" onChange={this.updateFilter.bind(this)}>
             <div className="filter__trigger">
                 <label htmlFor="dev" className="filter__label">DEV</label>
-                <input id="dev" type="checkbox" checked onChange={this.updateFilter.bind(this, 'dev')} className="filter__checkbox"/>
+                <input id="dev" type="checkbox" className="filter__checkbox"/>
             </div>
             <div className="filter__trigger">
                 <label htmlFor="qa" className="filter__label" >QA</label>
-                <input id="qa" type="checkbox" onChange={this.updateFilter.bind(this, 'qa')} className="filter__checkbox"/>
+                <input id="qa" type="checkbox" className="filter__checkbox"/>
             </div>
             <div className="filter__trigger">
                 <label htmlFor="cp" className="filter__label" >CP</label>
-                <input id="cp" type="checkbox" onChange={this.updateFilter.bind(this, 'cp')} className="filter__checkbox"/>
+                <input id="cp" type="checkbox" className="filter__checkbox"/>
             </div>
         </div>
     );

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Jirascope from '../../jirascope';
 import Row from './Row';
-import Filters from '../Filters/Filters';
 import './Table.css';
 
 var data = ['Loading...'];
@@ -10,7 +9,8 @@ class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: Jirascope.search.current
+      current: Jirascope.search.current,
+      initial: true
     };
     this.selectors = {
       table: 'b_table',
@@ -22,21 +22,35 @@ class Table extends Component {
   }
 
   componentDidMount() {
-    this.updateInfo();
-    console.log('mount');
+    this.updateInfo().then( _ =>{
+      this.setState({
+        current: Jirascope.search.current,
+        initial: false
+      });
+    });
   }
-  componentWillUpdate() {
-    console.log('will');
-  }
+
   componentDidUpdate() {
-    // this.updateInfo();
-    console.log('did');    
+    setTimeout(_=>{
+      //not "shallow" comparison of states
+      if(this.state.current !== Jirascope.search.current) {
+        this.updateInfo().then( _ =>{
+          this.setState({
+            current: Jirascope.search.current,
+            initial: false
+          });
+        });   
+      } 
+    }, 100)
   }
+
+  // componentDidUpdate() {}
 
   updateInfo() {
     //using a passed method to get data
     console.log(`Updateing....${String(this.props.name).toUpperCase()}`);
-    this.props.widget()
+    return new Promise((resolve, reject) => {
+      this.props.widget() //using module to proceed data
       .then(rows => {
         /**
          * Accepts multidimensional array
@@ -54,19 +68,15 @@ class Table extends Component {
               <Row data={row} selectors={this.selectors} rowIndex={index} key={row.toString()}/>
             );
         });
-        this.setState({
-          current: Jirascope.search.current
-        });
+        resolve();
       });
+    });
   }
 
   render() {
     return (
       <div className="widget widget--table">
         <h1 className={this.selectors.title}>{this.props.name}</h1>
-        <div >
-          <Filters updateWidget={this.updateInfo} />
-        </div>
         <div className={this.selectors.table}>
           {data}
         </div>
