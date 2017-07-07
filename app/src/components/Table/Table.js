@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Jirascope from '../../jirascope';
 import Row from './Row';
-import './Table.css';
+import './scss/Table.css';
 
 var data = ['Loading...'];
 
@@ -76,7 +76,6 @@ class Table extends Component {
   render() {
     return (
       <div className="widget widget--table">
-        {/*<h1 className={this.selectors.title}>{this.props.name}</h1>*/}
         <div className={this.selectors.table}>
           {data}
         </div>

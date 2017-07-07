@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Checkbox from './Checkbox';
 import Jirascope from '../../jirascope';
-import './Filters.css';
+import './scss/Filters.css';
 
 class TeamsFilter extends Component {
   constructor(props) {

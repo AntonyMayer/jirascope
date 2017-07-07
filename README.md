@@ -13,6 +13,9 @@
     ./app/jirascope
 ```
 
+`Jirascope` a-la Redux...if only I knew before...
+Also controls global state, keeps GET params, changes location, update history and etc. => sometimes dispatches `globalUpdate` event that affects `Page` component and its children.
+
 ## Start
 
 There are two servers:
@@ -57,9 +60,9 @@ Builds rows for table.
 
 **Filters**
 
-Updating GET params, change location, update history
+Updating search params
 
-`props.event` - method to update **Table** component
+`props.event` - method to update **Table** component => fetch data 
 
 ## express API
 

@@ -10,7 +10,7 @@ import TeamsFilter from '../Filters/Teams';
 import ticketsByProject from '../../widgets/ticketsByProject';
 
 //css
-import './Page.css';
+import './scss/Page.css';
 
 
 class Page extends Component {
@@ -36,7 +36,7 @@ class Page extends Component {
     return (
       <div>
           <TeamsFilter />
-          <Table name='Tickets by project' widget={ticketsByProject}/>
+          <Table widget={ticketsByProject}/>
       </div>
     );
   }
