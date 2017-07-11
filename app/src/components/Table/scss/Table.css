@@ -1,19 +1,20 @@
 .b_table {
-  display: table;
-  width: 100vw;
   border-spacing: 0px;
-  box-shadow: 0 0 2.3rem #777; }
+  box-shadow: 0 0 2.3rem #777;
+  display: table;
+  margin-bottom: 1.6rem;
+  width: 100vw; }
 
 .b_table__title {
   margin: 0.8rem;
-  text-transform: uppercase;
+  text-align: left;
   text-shadow: 0 0 2.3rem #777;
-  text-align: left; }
+  text-transform: uppercase; }
 
 .b_table__row {
+  cursor: pointer;
   display: table-row;
-  transition: all .8s;
-  cursor: pointer; }
+  transition: all .8s; }
   .b_table__row:hover {
     background: rgba(0, 0, 0, 0.4);
     transition: all .2s; }
@@ -22,22 +23,22 @@
     background: rgba(0, 0, 0, 0.4); }
 
 .b_table__cell {
-  display: table-cell;
   border-top: 1px solid #fff;
+  display: table-cell;
   padding: 0.8rem;
   text-align: center; }
   .b_table__cell:nth-of-type(1) {
-    text-align: left;
-    font-weight: bold;
-    background: rgba(0, 0, 0, 0.1); }
-  .b_table__cell:nth-of-type(2) {
-    text-align: left;
-    font-weight: bold;
     background: rgba(0, 0, 0, 0.1);
-    border-right: 1px solid #fff; }
+    font-weight: bold;
+    text-align: left; }
+  .b_table__cell:nth-of-type(2) {
+    background: rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #fff;
+    font-weight: bold;
+    text-align: left; }
   .b_table__cell--red {
-    font-size: calc(1rem + 1.2rem);
-    padding: -0.4rem 0.8rem;
     background: rgba(255, 0, 0, 0.4);
     border-left: 1px solid #fff;
-    border-right: 1px solid #fff; }
+    border-right: 1px solid #fff;
+    font-size: calc(1rem + 1.2rem);
+    padding: -0.4rem 0.8rem; }

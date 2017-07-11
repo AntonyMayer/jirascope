@@ -6,7 +6,9 @@ body {
     font-family: 'Roboto', sans-serif; 
     font-size: .9rem;
     margin: 0;
+    overflow-x: hidden;
     padding: 0;
+    width: 100vw;
 }
 
 p {

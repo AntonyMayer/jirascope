@@ -8,6 +8,7 @@ import TeamsFilter from '../Filters/Teams';
 
 //widgets
 import ticketsByProject from '../../widgets/ticketsByProject';
+import ticketsByAssignee from '../../widgets/ticketsByAssignee';
 
 //css
 import './scss/Page.css';
@@ -36,7 +37,8 @@ class Page extends Component {
     return (
       <div>
           <TeamsFilter />
-          <Table widget={ticketsByProject}/>
+          <Table widget={ticketsByProject}/> 
+          <Table widget={ticketsByAssignee}/>
       </div>
     );
   }
