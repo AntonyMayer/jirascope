@@ -37,8 +37,8 @@ class Page extends Component {
     return (
       <div>
           <TeamsFilter />
-          <Table widget={ticketsByProject}/> 
-          <Table widget={ticketsByAssignee}/>
+          <Table widget={ticketsByProject} classModifier="projects"/> 
+          <Table widget={ticketsByAssignee} classModifier="assignees"/>
       </div>
     );
   }

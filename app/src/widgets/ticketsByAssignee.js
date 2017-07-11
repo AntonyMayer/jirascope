@@ -9,52 +9,50 @@ export default function() {
         .then(tickets => {
             let assignees = {}, //temporary object for projects
                 table = [],
-                headers = [];
+                headers = ['Assignee'];
 
             //create project and its counters
-            tickets.forEach(ticket => {
-                if (!assignees[ticket.fields.assignee.key]) {
-                    createRecord(assignees, ticket.fields.assignee.key);
-                    updateRecord(assignees, ticket.fields.assignee.key, ticket.fields.project.key);
-                    headers.push(ticket.fields.project.key);
-                } else {
+            /**
+             * CHEATLIST Transition's IDs:
+             * 
+             * 1        "Open"
+             * 4        "Reopened"
+             * 6        "Closed"
+             * 10008    "Ready for Test"
+             * 10035    "Blocked"
+             * 10037    "In Progress"
+             * 10076    "Dev Complete"
+             * 10976    "Developer Test"
+             * 10678    "Parking Lot"
+             * 10977    "Assets Tridion Publishing"
+             * 11276    "HTML Tridion Publishing"
+             * 11076    "Ready for Live"
+             */
+            tickets.forEach(function(ticket) {
+                if (checkTicketStatus(ticket)) {
+                    if (!assignees[ticket.fields.assignee.key]) {
+                        createRecord(assignees, ticket.fields.assignee.key);
+                    }
+                    createHeader(headers, ticket.fields.project.key);
                     updateRecord(assignees, ticket.fields.assignee.key, ticket.fields.project.key);
                 }
             });
 
-            //fill table 
-            // for (let project in projects) {
-            //     let row = [
-            //         clearProjectName(projects[project]['name']), //full project name
-            //         project, //project key
-            //         projects[project]['opened'], //number tickets
-            //         projects[project]['inProgress'],
-            //         projects[project]['devComplete'],
-            //         projects[project]['devTest'],
-            //         projects[project]['tridion'],
-            //         projects[project]['readyForTest'],
-            //         projects[project]['blocked'],
-            //         projects[project]['closed'],
-            //         projects[project]['assignees'].join(', ') //list of assignees                
-            //     ];
-            //     if (checkRow(row.slice(2,9))) table.push(row);
-            // }
+            //add headers to table
+            table.push(headers);
 
-            //add totals to the table
-                // table.push([
-                //     'TOTAL',
-                //     '-',
-                //     total['opened'], //number tickets
-                //     total['inProgress'],
-                //     total['devComplete'],
-                //     total['devTest'],
-                //     total['tridion'],
-                //     total['readyForTest'],
-                //     total['blocked'],
-                //     '-',
-                //     // total['closed'],
-                //     '-'
-                // ]);
+            //fill table => create rows => ["junk.man", 0, 0, 1, 0, 0]
+            for (let assignee in assignees) {
+                let row = Array(headers.length - 1).fill(' ');
+                for (let project in assignees[assignee]) {
+                    let index = headers.indexOf(project);
+                    if (index > -1) {
+                        row.splice((index - 1), 1, assignees[assignee][project]);
+                    }
+                }
+                row.splice(0, 0, clearAssigneeName(assignee));
+                table.push(row);
+            }
 
             /**
              * Return multidimensional array
@@ -68,7 +66,7 @@ export default function() {
              * ]
              */
             console.log(assignees);
-            console.log(headers);
+            console.log(table);
             return table;
         })
 }
@@ -77,45 +75,32 @@ function createRecord(assignees, assignee) {
     assignees[assignee] = {};
 }
 
+function createHeader(headers, project) {
+    if (!headers.includes(project)) headers.push(project);
+}
+
 function updateRecord(assignees, assignee, project) {
-   if (!assignees[assignee][project]) assignees[assignee][project] = 1;
-   else assignees[assignee][project]++;
+    if (!assignees[assignee][project]) assignees[assignee][project] = 1;
+    else assignees[assignee][project]++;
 }
 
-//eliminate rows with unidentified ticket status and other weird staff (i.e. 0 0 0 0 0 0 0 rows)
-function checkRow(row) {
-    let totalTickets = 0;
-    for (let elm of row) {
-        if (elm > 0) {
-            totalTickets++;
-        }
-    } 
-    if (totalTickets > 0) return true;
-    return false;
-}
-
-/**
- * Update list of assignees' initials for table w/ projects
- * 
- * @param {any} project 
- * @param {any} currentAssignee 
- */
-function updateAssineeList(project, currentAssignee) {
-    currentAssignee = clearAssigneeName(currentAssignee);
-    if (project.assignees.indexOf(currentAssignee) < 0) {
-        project.assignees.push(currentAssignee);
+function checkTicketStatus(ticket) {
+    let status = Number(ticket.fields.status.id);
+    if (status !== 1 &&
+        status !== 4 &&
+        status !== 10008 &&
+        status !== 10037 &&
+        status !== 10076 &&
+        status !== 10976 &&
+        status !== 10977 &&
+        status !== 11276) {
+        return false;
+    } else {
+        return true;
     }
 }
 
 function clearAssigneeName(user) {
     let firstName = user.split('.')[0];
     return firstName.charAt(0).toUpperCase() + firstName.slice(1, 10);
-}
-
-function clearProjectName(project) {
-    if (project.length > 30) {
-        return project.slice(0, 30).concat('\u2026');
-    } else {
-        return project;
-    }
 }
