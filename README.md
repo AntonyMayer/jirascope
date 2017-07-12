@@ -67,7 +67,7 @@ Updating search params based on `Jirascope.teams` data
 
 Triggers global event `globalUpdate`
 
-##Widgets
+## Widgets
 
 ### Tickets by Project
 
@@ -83,7 +83,7 @@ Fetch data from `MongoDB` and provide data for Table sorted by assignee.
 
 **Returns** multidimensional array
 
-##Express API
+## Express API
 
 **Tickets**
 
