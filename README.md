@@ -27,11 +27,11 @@ There are two servers:
 
 ## Components
 
-###Page
+### Page
 
 Builds app layout
 
-###Tables
+### Tables
 
 Builds Tables. Contains all css selectors for Table and its elements.
 
@@ -51,7 +51,7 @@ Builds Tables. Contains all css selectors for Table and its elements.
 ]
 ```
 
-###Rows
+### Rows
 
 Builds rows for Table.
 
@@ -61,7 +61,7 @@ Builds rows for Table.
 
 **Accepts** array to build a row
 
-###Filters
+### Filters
 
 Updating search params based on `Jirascope.teams` data
 
@@ -69,7 +69,7 @@ Triggers global event `globalUpdate`
 
 ##Widgets
 
-###Tickets by Project
+### Tickets by Project
 
 Fetch data from `MongoDB` and provide data for Table sorted by project.
 
@@ -77,7 +77,7 @@ Fetch data from `MongoDB` and provide data for Table sorted by project.
 
 **Returns** multidimensional array
 
-###Tickets by Assignee
+### Tickets by Assignee
 
 Fetch data from `MongoDB` and provide data for Table sorted by assignee.
 
