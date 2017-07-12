@@ -14,7 +14,7 @@
 ```
 
 `Jirascope` a-la Redux...if only I knew before...
-Also controls global state, keeps GET params, changes location, update history and etc. => sometimes dispatches `globalUpdate` event that affects `Page` component and its children.
+Also controls global state, keeps GET params, changes location, update history and etc. => sometimes dispatches `globalUpdate` event that forces `Page` component and its children to render new data.
 
 ## Start
 
@@ -27,19 +27,20 @@ There are two servers:
 
 ## Components
 
-**Page**
+###Page
 
 Builds app layout
 
-**Tables**
+###Tables
 
-Builds tables. Contains all css selectors for table and its elements.
+Builds Tables. Contains all css selectors for Table and its elements.
 
-`props.widget` - reference specific module to get the data for table
+`props.widget` - reference specific module to `fetch` the data from `MongoDB` and proceed it in a certain way, returns multidimensional array for Table
 
-`props.name` - table header [optional]
+`props.name` - Table header [optional]
 
-Accepts multidimensional array to build table 
+**Accepts** multidimensional array to build Table 
+
 ```
 [
     [cell, cell, ..., cell],
@@ -50,21 +51,39 @@ Accepts multidimensional array to build table
 ]
 ```
 
-**Rows**
+###Rows
 
-Builds rows for table.
+Builds rows for Table.
 
 `props.data` - array containing data for the row
 `props.selectors` - data for css selectors
 `props.rowIndex` - row index
 
-**Filters**
+**Accepts** array to build a row
 
-Updating search params
+###Filters
 
-`props.event` - method to update **Table** component => fetch data 
+Updating search params based on `Jirascope.teams` data
 
-## express API
+Triggers global event `globalUpdate`
+
+##Widgets
+
+###Tickets by Project
+
+Fetch data from `MongoDB` and provide data for Table sorted by project.
+
+*TODO: extract fetch data function as a separate module*
+
+**Returns** multidimensional array
+
+###Tickets by Assignee
+
+Fetch data from `MongoDB` and provide data for Table sorted by assignee.
+
+**Returns** multidimensional array
+
+##Express API
 
 **Tickets**
 

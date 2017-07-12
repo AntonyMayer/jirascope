@@ -39,6 +39,7 @@ class TeamsFilter extends Component {
             this.teams[i].checked = true;
             localStorage.setItem(this.teams[i].id, true);
         }  
+        //concat all teams into one array to display all
         for (let team in Jirascope.teams) {
             teamsArr = teamsArr.concat(Jirascope.teams[team]);
         }
