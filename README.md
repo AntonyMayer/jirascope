@@ -16,6 +16,8 @@
 `Jirascope` a-la Redux...if only I knew before...
 Also controls global state, keeps GET params, changes location, update history and etc. => sometimes dispatches `globalUpdate` event that forces `Page` component and its children to render new data.
 
+**Use** `Jirascope.getData();` to fetch data from server and trigger global update
+
 ## Start
 
 There are two servers:
@@ -101,7 +103,9 @@ Fetch data from `MongoDB` and provide data for Table sorted by assignee.
 3. `Raect app`
 
 3.1. Creates a page layout
-3.2. Every 3000 ms send request to server for updates via calling `Jirascope.getData()`
+3.2. Every 3000 ms send request to server for updates via calling `Jirascope.updateLoop()`
+
+**Use** `Jirascope.getData();` to fetch data from server and trigger global update
 
 ## Express API
 

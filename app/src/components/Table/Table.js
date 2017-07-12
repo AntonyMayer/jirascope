@@ -19,18 +19,6 @@ class Table extends Component {
     this.data = [
       ['Loading...']
     ];
-    /**
-     * Data is a multidimensional array for building tables returned by this.udateInfo()
-     * 
-     * [
-     *    [cell, cell, ..., cell],  //row
-     *    [cell, cell, ..., cell],  //row
-     *    [cell, cell, ..., cell],  //row
-     *    ...
-     *    [cell, cell, ..., cell]   //row
-     * ]
-     * 
-     */
     this.updateInfo = this.updateInfo.bind(this);
   }
 
@@ -44,6 +32,18 @@ class Table extends Component {
  
   updateInfo() {
     let tmpData = this.props.widget(Jirascope.data); //using widget module to proceed data and get an array
+    /**
+     * tmpData is a multidimensional array for building tables returned by this.udateInfo()
+     * 
+     * [
+     *    [cell, cell, ..., cell],  //row
+     *    [cell, cell, ..., cell],  //row
+     *    [cell, cell, ..., cell],  //row
+     *    ...
+     *    [cell, cell, ..., cell]   //row
+     * ]
+     * 
+     */
     this.data = tmpData.map((row, index) => {
         return (
           <Row data={row} selectors={this.selectors} rowIndex={index} key={row.toString()} />

@@ -46,6 +46,7 @@ class TeamsFilter extends Component {
     }
 
     Jirascope.updateAssigneeList(teamsArr);
+    Jirascope.getData();
   }
 
   render() {

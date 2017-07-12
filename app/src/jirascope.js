@@ -49,6 +49,7 @@ class Jirascope {
         window.onpopstate = this.setState;
 
         this.state = this.getUrlParams(); //will be used to set initial state for all widgets
+        this.getData = this.getData.bind(this);
         this.init();
     }
 
@@ -114,6 +115,7 @@ class Jirascope {
             return res.json();
         }).then(data => {
             this.data = data;
+            window.dispatchEvent(this.globalUpdate);            
             /**
              * Data is a multidimensional array for building tables
              * 
@@ -126,6 +128,14 @@ class Jirascope {
              * ]
              */
         });
+    }
+
+    updateLoop() {
+        this.getData();
+        setInterval(_=> {
+            console.log('this');
+            this.getData();      
+        }, 3000)
     }
 
     //get params from location

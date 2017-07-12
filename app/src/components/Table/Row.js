@@ -7,6 +7,7 @@ class Row extends Component {
       date: new Date()
     };
     //accepts array and builds rows for tables
+    console.log(this.props.data);
     this.data = this.props.data.map((element, index) => {
         if (Number(element) < 1) {
             return (
