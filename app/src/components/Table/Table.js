@@ -3,8 +3,6 @@ import Jirascope from '../../jirascope';
 import Row from './Row';
 import './scss/Table.css';
 
-var data = ['Loading...'];
-
 class Table extends Component {
   constructor(props) {
     super(props);
@@ -18,66 +16,38 @@ class Table extends Component {
       cell: 'b_table__cell',
       title: 'b_table__title'
     }
+    this.data = [
+      ['Loading...']
+    ];
+    /**
+     * Data is a multidimensional array for building tables returned by this.udateInfo()
+     * 
+     * [
+     *    [cell, cell, ..., cell],  //row
+     *    [cell, cell, ..., cell],  //row
+     *    [cell, cell, ..., cell],  //row
+     *    ...
+     *    [cell, cell, ..., cell]   //row
+     * ]
+     * 
+     */
     this.updateInfo = this.updateInfo.bind(this);
   }
 
   componentDidMount() {
-    this.updateInfo().then( _ =>{
-      this.setState({
-        current: Jirascope.search.current,
-        initial: false
-      });
-    });
-    // setInterval(_=>{
-    //   this.updateInfo().then( _ =>{
-    //     this.setState({
-    //       current: Jirascope.search.current,
-    //       initial: false
-    //     });
-    //   });
-    // }, 5000);
+    this.updateInfo();
   }
 
-  componentDidUpdate() {
-    setTimeout(_=>{
-      //not "shallow" comparison of states
-      if(this.state.current !== Jirascope.search.current) {
-        this.updateInfo().then( _ =>{
-          this.setState({
-            current: Jirascope.search.current,
-            initial: false
-          });
-        });   
-      } 
-    }, 100)
+  componentWillUpdate() {
+    this.updateInfo();
   }
-
-  // componentDidUpdate() {}
-
+ 
   updateInfo() {
-    //using a passed method to get data
-    console.log(`Updateing....tables`);
-    return new Promise((resolve, reject) => {
-      this.props.widget() //using module to proceed data
-      .then(rows => {
-        /**
-         * Accepts multidimensional array
-         * 
-         * [
-         *    [cell, cell, ..., cell],  //row
-         *    [cell, cell, ..., cell],  //row
-         *    [cell, cell, ..., cell],  //row
-         *    ...
-         *    [cell, cell, ..., cell]   //row
-         * ]
-         */
-        data = rows.map((row, index) => {
-            return (
-              <Row data={row} selectors={this.selectors} rowIndex={index} key={row.toString()}/>
-            );
-        });
-        resolve();
-      });
+    let tmpData = this.props.widget(Jirascope.data); //using widget module to proceed data and get an array
+    this.data = tmpData.map((row, index) => {
+        return (
+          <Row data={row} selectors={this.selectors} rowIndex={index} key={row.toString()} />
+        );
     });
   }
 
@@ -85,7 +55,7 @@ class Table extends Component {
     return (
       <div className="widget widget--table">
         <div className={`${this.selectors.table} ${this.selectors.table}--${this.props.classModifier}`}>
-          {data}
+          {this.data}
         </div>
       </div>
     );

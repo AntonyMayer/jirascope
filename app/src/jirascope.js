@@ -38,6 +38,9 @@ class Jirascope {
             current: ``
         }
 
+        //placeholder for widgets data => fetches data from server on regular basis
+        this.data = {status: 'loading'};
+
         //custom event - triggered when global updated is required
         this.globalUpdate = new Event('globalUpdate');
 
@@ -103,6 +106,26 @@ class Jirascope {
     updateHistory(flag) {
         this.search.current = `?status=${this.params.status.join('+')}&assignee=${this.params.assignee.join('+')}`;
         if (!flag) window.history.pushState({ state: this.search.current }, this.search.current, ('search' + this.search.current));
+    }
+
+    getData() {
+        fetch(`/api/tickets${this.search.current}`)
+        .then(res => {
+            return res.json();
+        }).then(data => {
+            this.data = data;
+            /**
+             * Data is a multidimensional array for building tables
+             * 
+             * [
+             *    [cell, cell, ..., cell],  //row
+             *    [cell, cell, ..., cell],  //row
+             *    [cell, cell, ..., cell],  //row
+             *    ...
+             *    [cell, cell, ..., cell]   //row
+             * ]
+             */
+        });
     }
 
     //get params from location

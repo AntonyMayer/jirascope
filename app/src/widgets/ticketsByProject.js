@@ -1,96 +1,92 @@
-import Jirascope from '../jirascope';
+export default function(tickets) {
+    if (tickets.status) {
+        return [
+            ['Loading...']
+        ]
+    }
+    let projects = {}, //temporary object for projects
+        table = [ //will be passed to Table component
+            [ //headers (first row)
+                'Project',
+                'Key',
+                'Open',
+                'In Progress',
+                'Dev Complete',
+                'Dev Test',
+                'Tridion Publishing',
+                'Ready for Test',
+                'Blocked',
+                // 'Closed',
+                'Assignees'
+            ]
+        ],
+        total = { //object contains total counters
+            opened: 0,
+            inProgress: 0,
+            devComplete: 0,
+            devTest: 0,
+            tridion: 0,
+            readyForTest: 0,
+            blocked: 0,
+            // closed: 0
+        };
 
-export default function() {
-    Jirascope.setState(true);
-    return fetch(`/api/tickets${Jirascope.search.current}`)
-        .then(res => {
-            return res.json();
-        })
-        .then(tickets => {
-            let projects = {}, //temporary object for projects
-                table = [ //will be passed to Table component
-                    [ //headers (first row)
-                        'Project',
-                        'Key',
-                        'Open',
-                        'In Progress',
-                        'Dev Complete',
-                        'Dev Test',
-                        'Tridion Publishing',
-                        'Ready for test',
-                        'Blocked',
-                        // 'Closed',
-                        'Assignees'
-                    ]
-                ],
-                total = { //object contains total counters
-                    opened: 0,
-                    inProgress: 0,
-                    devComplete: 0,
-                    devTest: 0,
-                    tridion: 0,
-                    readyForTest: 0,
-                    blocked: 0,
-                    // closed: 0
-                };
+    //create project and its counters
+    tickets.forEach(ticket => {
+        if (!projects[ticket.fields.project.key]) {
+            createRecord(ticket, projects);
+            updateRecord(ticket, projects, total);
+        } else {
+            updateRecord(ticket, projects, total);
+        }
+    });
 
-            //create project and its counters
-            tickets.forEach(ticket => {
-                if (!projects[ticket.fields.project.key]) {
-                    createRecord(ticket, projects);
-                    updateRecord(ticket, projects, total);
-                } else {
-                    updateRecord(ticket, projects, total);
-                }
-            });
+    //fill table 
+    for (let project in projects) {
+        let row = [
+            clearProjectName(projects[project]['name']), //full project name
+            project, //project key
+            projects[project]['opened'], //number tickets
+            projects[project]['inProgress'],
+            projects[project]['devComplete'],
+            projects[project]['devTest'],
+            projects[project]['tridion'],
+            projects[project]['readyForTest'],
+            projects[project]['blocked'],
+            // projects[project]['closed'],
+            projects[project]['assignees'].join(', ') //list of assignees                
+        ];
+        if (checkRow(row.slice(2, 9))) table.push(row);
+    }
 
-            //fill table 
-            for (let project in projects) {
-                let row = [
-                    clearProjectName(projects[project]['name']), //full project name
-                    project, //project key
-                    projects[project]['opened'], //number tickets
-                    projects[project]['inProgress'],
-                    projects[project]['devComplete'],
-                    projects[project]['devTest'],
-                    projects[project]['tridion'],
-                    projects[project]['readyForTest'],
-                    projects[project]['blocked'],
-                    // projects[project]['closed'],
-                    projects[project]['assignees'].join(', ') //list of assignees                
-                ];
-                if (checkRow(row.slice(2,9))) table.push(row);
-            }
+    //add totals to the table
+    table.push([
+        'TOTAL',
+        '-',
+        total['opened'], //number tickets
+        total['inProgress'],
+        total['devComplete'],
+        total['devTest'],
+        total['tridion'],
+        total['readyForTest'],
+        total['blocked'],
+        // '-',
+        // total['closed'],
+        '-'
+    ]);
 
-            //add totals to the table
-            table.push([
-                'TOTAL',
-                '-',
-                total['opened'], //number tickets
-                total['inProgress'],
-                total['devComplete'],
-                total['devTest'],
-                total['tridion'],
-                total['readyForTest'],
-                total['blocked'],
-                // '-',
-                // total['closed'],
-                '-'
-            ]);
-
-            /**
-             * Return multidimensional array
-             * 
-             * [
-             *    [cell, cell, ..., cell],  //row
-             *    [cell, cell, ..., cell],  //row
-             *    [cell, cell, ..., cell],  //row
-             *    ...
-             *    [cell, cell, ..., cell]   //row
-             * ]
-             */
-            return table;
-        })
+    /**
+     * Return multidimensional array
+     * 
+     * [
+     *    [cell, cell, ..., cell],  //row
+     *    [cell, cell, ..., cell],  //row
+     *    [cell, cell, ..., cell],  //row
+     *    ...
+     *    [cell, cell, ..., cell]   //row
+     * ]
+     */
+    return table;
 }
 
 function createRecord(ticket, projects) {
@@ -210,7 +206,7 @@ function checkRow(row) {
         if (elm > 0) {
             totalTickets++;
         }
-    } 
+    }
     if (totalTickets > 0) return true;
     return false;
 }

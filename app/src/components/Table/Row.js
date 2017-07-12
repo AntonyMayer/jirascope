@@ -7,7 +7,7 @@ class Row extends Component {
       date: new Date()
     };
     //accepts array and builds rows for tables
-    this.data = props.data.map((element, index) => {
+    this.data = this.props.data.map((element, index) => {
         if (Number(element) < 1) {
             return (
                 <div className={`${this.props.selectors.cell} ${this.props.selectors.cell}--zero`} key={(this.props.rowIndex + index).toString()}>
@@ -27,7 +27,6 @@ class Row extends Component {
                 </div>
             );
         }
-        
     });
   }
 

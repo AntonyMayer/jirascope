@@ -26,7 +26,21 @@ class Page extends Component {
     window.addEventListener('globalUpdate', this.watchGlobalState);
   }
 
+  componentDidMount() {
+    Jirascope.getData();
+
+    setInterval(_=> {
+      Jirascope.getData();
+      this.setState({
+        current: Jirascope.search.current
+      });
+      console.log(Jirascope.data.length);
+    }, 3000);
+  }
+
   watchGlobalState() {
+    console.log('this');
+    Jirascope.getData();
     this.setState({
       current: Jirascope.search.current
     });

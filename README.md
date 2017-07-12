@@ -7,7 +7,7 @@
 |Dev|3000|
 |Proxy|3311|
 
-**Config & namespace object** 
+**App & Config & namespace object** 
 
 ```
     ./app/jirascope
@@ -82,6 +82,26 @@ Fetch data from `MongoDB` and provide data for Table sorted by project.
 Fetch data from `MongoDB` and provide data for Table sorted by assignee.
 
 **Returns** multidimensional array
+
+## Workflow
+
+1. `JiraCli` runs on a background `jira post`
+
+1.1. On first iteration it iterates all jira issues
+
+1.2. All next iterations (every 3000 ms) => iterate only issues updated within last 60 mins
+
+1.3. On each iteration perform `MongoDB` update via `upsert`
+
+2. `Node Express` server listen for GET requests
+
+2.1. Based on GET request params do the query to `MongoDB`
+2.2. Send back the data from `MongoDB` to `React app`
+
+3. `Raect app`
+
+3.1. Creates a page layout
+3.2. Every 3000 ms send request to server for updates via calling `Jirascope.getData()`
 
 ## Express API
 
