@@ -1,6 +1,6 @@
 .filter {
-  display: inline-block;
-  margin: 0.8rem; }
+  display: table;
+  margin: 1.6rem auto; }
 
 .filter__unit {
   display: inline-block;

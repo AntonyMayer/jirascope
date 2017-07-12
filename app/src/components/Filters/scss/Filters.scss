@@ -1,7 +1,8 @@
 $spacing: .8rem;
+
 .filter {
-    display: inline-block;
-    margin: $spacing;
+    display: table;
+    margin: $spacing*2 auto;
 }
 
 .filter__unit {

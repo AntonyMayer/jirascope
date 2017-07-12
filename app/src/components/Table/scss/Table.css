@@ -3,7 +3,7 @@
   border-spacing: 0px;
   box-shadow: 0 0 2.3rem #777;
   display: table;
-  margin: 0.8rem;
+  margin: 1.6rem auto;
   overflow: hidden; }
 
 .b_table__title {
@@ -27,7 +27,6 @@
 .b_table__cell {
   border-top: 1px solid #fff;
   display: table-cell;
-  font-size: .9rem;
   padding: 0.8rem;
   position: relative;
   text-align: center; }
@@ -49,13 +48,13 @@
     font-weight: bold;
     text-align: left; }
   .b_table__cell:hover:before {
-    display: block;
-    content: '';
-    position: absolute;
-    left: -1px;
-    top: -200vh;
-    width: calc(100% + 1px);
-    height: 400vh;
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid #fff;
+    content: '';
+    display: block;
+    left: -1px;
+    height: 400vh;
+    position: absolute;
+    top: -200vh;
+    width: calc(100% + 1px);
     z-index: -1; }

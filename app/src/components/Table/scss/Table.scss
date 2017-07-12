@@ -8,7 +8,7 @@ $spacing: .8rem;
     border-spacing: 0px;
     box-shadow: $shadow;
     display: table;
-    margin: $spacing;
+    margin: $spacing*2 auto;
     overflow: hidden;
 }
 
@@ -39,7 +39,7 @@ $spacing: .8rem;
 .b_table__cell {
     border-top: $border;
     display: table-cell;
-    font-size: .9rem;
+    // font-size: .9rem;
     padding: $spacing;
     position: relative;
     text-align: center;
@@ -68,15 +68,15 @@ $spacing: .8rem;
         text-align: left;
     }
     &:hover:before {
-        display: block;
-        content: '';
-        position: absolute;
-        left: -1px;
-        top: -200vh;
-        width: calc(100% + 1px);
-        height: 400vh;
         background: rgba(0, 0, 0, .2);
         border: $border;
+        content: '';
+        display: block;
+        left: -1px;
+        height: 400vh;
+        position: absolute;
+        top: -200vh;
+        width: calc(100% + 1px);
         z-index: -1;
     }
 }
