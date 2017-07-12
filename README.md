@@ -75,8 +75,6 @@ Triggers global event `globalUpdate`
 
 Fetch data from `MongoDB` and provide data for Table sorted by project.
 
-*TODO: extract fetch data function as a separate module*
-
 **Returns** multidimensional array
 
 ### Tickets by Assignee
