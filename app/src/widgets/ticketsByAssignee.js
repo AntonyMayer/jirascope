@@ -43,7 +43,7 @@ export default function() {
 
             //fill table => create rows => ["junk.man", 0, 0, 1, 0, 0]
             for (let assignee in assignees) {
-                let row = Array(headers.length - 1).fill(' ');
+                let row = Array(headers.length - 1).fill(0);
                 for (let project in assignees[assignee]) {
                     let index = headers.indexOf(project);
                     if (index > -1) {

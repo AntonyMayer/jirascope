@@ -30,7 +30,6 @@ class Page extends Component {
     this.setState({
       current: Jirascope.search.current
     });
-    // console.log(this.state);
   }
 
   render() {

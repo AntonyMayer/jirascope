@@ -34,11 +34,14 @@ class TeamsFilter extends Component {
 
     //avoid empty array
     if(!teamsArr.length) {
+        teamsArr = [];
         for (var i = 0, len = this.teams.length; i < len; i++) {
             this.teams[i].checked = true;
             localStorage.setItem(this.teams[i].id, true);
         }  
-        teamsArr = Jirascope.teams.dev.concat(Jirascope.teams.qa).concat(Jirascope.teams.cp);
+        for (let team in Jirascope.teams) {
+            teamsArr = teamsArr.concat(Jirascope.teams[team]);
+        }
     }
 
     Jirascope.updateAssigneeList(teamsArr);
@@ -52,6 +55,7 @@ class TeamsFilter extends Component {
                 <Checkbox id="dev" group="team" />
                 <Checkbox id="qa" group="team" />
                 <Checkbox id="cp" group="team" />
+                <Checkbox id="pm" group="team" />
             </div>
         </div>
     );

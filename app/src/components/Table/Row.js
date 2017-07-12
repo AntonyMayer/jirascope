@@ -8,11 +8,26 @@ class Row extends Component {
     };
     //accepts array and builds rows for tables
     this.data = props.data.map((element, index) => {
-        return (
-            <div className={this.props.selectors.cell} key={(this.props.rowIndex + index).toString()}>
-                {element}
-            </div>
-        );
+        if (Number(element) < 1) {
+            return (
+                <div className={`${this.props.selectors.cell} ${this.props.selectors.cell}--zero`} key={(this.props.rowIndex + index).toString()}>
+                    {element}
+                </div>
+            );
+        } else if (Number(element) > 5) {
+            return (
+                <div className={`${this.props.selectors.cell} ${this.props.selectors.cell}--red`} key={(this.props.rowIndex + index).toString()}>
+                    {element}
+                </div>
+            );
+        } else {
+            return (
+                <div className={this.props.selectors.cell} key={(this.props.rowIndex + index).toString()}>
+                    {element}
+                </div>
+            );
+        }
+        
     });
   }
 

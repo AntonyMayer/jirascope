@@ -28,6 +28,14 @@ class Table extends Component {
         initial: false
       });
     });
+    // setInterval(_=>{
+    //   this.updateInfo().then( _ =>{
+    //     this.setState({
+    //       current: Jirascope.search.current,
+    //       initial: false
+    //     });
+    //   });
+    // }, 5000);
   }
 
   componentDidUpdate() {
@@ -48,7 +56,7 @@ class Table extends Component {
 
   updateInfo() {
     //using a passed method to get data
-    console.log(`Updateing....${String(this.props.name).toUpperCase()}`);
+    console.log(`Updateing....tables`);
     return new Promise((resolve, reject) => {
       this.props.widget() //using module to proceed data
       .then(rows => {
@@ -76,7 +84,7 @@ class Table extends Component {
   render() {
     return (
       <div className="widget widget--table">
-        <div className={this.selectors.table}>
+        <div className={`${this.selectors.table} ${this.selectors.table}--${this.props.classModifier}`}>
           {data}
         </div>
       </div>

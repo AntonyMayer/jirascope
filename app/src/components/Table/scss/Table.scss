@@ -1,14 +1,15 @@
 $border: 1px solid #fff;
-$fontIncrement: 1.2rem;
+$fontIncrement: .5rem;
 $shadow: 0 0 2.3rem #777;
 $spacing: .8rem;
 
 .b_table {
+    border: 10px solid #fff;
     border-spacing: 0px;
     box-shadow: $shadow;
     display: table;
-    margin-bottom: $spacing*2;
-    width: 100vw;
+    margin: $spacing;
+    overflow: hidden;
 }
 
 .b_table__title {
@@ -29,7 +30,7 @@ $spacing: .8rem;
         transition: all .2s;
     }
     &:nth-of-type(1),
-    &:nth-last-of-type(1) {
+    .b_table--projects &:nth-last-of-type(1) {
         font-weight: bold;
         background: rgba(0, 0, 0, .4);
     }
@@ -38,26 +39,44 @@ $spacing: .8rem;
 .b_table__cell {
     border-top: $border;
     display: table-cell;
+    font-size: .9rem;
     padding: $spacing;
+    position: relative;
     text-align: center;
-    &:nth-of-type(1) {
-        background: rgba(0, 0, 0, .1);
-        font-weight: bold;
-        text-align: left;
-    }
-    &:nth-of-type(2) {
-        background: rgba(0, 0, 0, .1);
-        border-right: $border;
-        font-weight: bold;
-        text-align: left;
-    }
     &--red {
         background: rgba(255, 0, 0, .4);
         border: {
             left: $border;
             right: $border;
         }
-        font-size: calc(1rem + #{$fontIncrement});
-        padding: ($spacing - $fontIncrement) $spacing;
+    }
+    &--zero {
+        color: rgba(255,255,255,.3);
+    }
+    &:nth-of-type(1) {
+        background: rgba(0, 0, 0, .1);
+        font-weight: bold;
+        text-align: left;
+        .b_table--assignees & {
+            border-right: $border;
+        }
+    }
+    .b_table--projects &:nth-of-type(2) {
+        background: rgba(0, 0, 0, .1);
+        border-right: $border;
+        font-weight: bold;
+        text-align: left;
+    }
+    &:hover:before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: -200vh;
+        width: calc(100% + 1px);
+        height: 400vh;
+        background: rgba(0, 0, 0, .2);
+        border: $border;
+        z-index: -1;
     }
 }

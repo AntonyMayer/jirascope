@@ -19,7 +19,7 @@ export default function() {
                         'Tridion Publishing',
                         'Ready for test',
                         'Blocked',
-                        'Closed',
+                        // 'Closed',
                         'Assignees'
                     ]
                 ],
@@ -31,7 +31,7 @@ export default function() {
                     tridion: 0,
                     readyForTest: 0,
                     blocked: 0,
-                    closed: 0
+                    // closed: 0
                 };
 
             //create project and its counters
@@ -56,7 +56,7 @@ export default function() {
                     projects[project]['tridion'],
                     projects[project]['readyForTest'],
                     projects[project]['blocked'],
-                    projects[project]['closed'],
+                    // projects[project]['closed'],
                     projects[project]['assignees'].join(', ') //list of assignees                
                 ];
                 if (checkRow(row.slice(2,9))) table.push(row);
@@ -73,7 +73,7 @@ export default function() {
                 total['tridion'],
                 total['readyForTest'],
                 total['blocked'],
-                '-',
+                // '-',
                 // total['closed'],
                 '-'
             ]);
@@ -104,7 +104,7 @@ function createRecord(ticket, projects) {
         tridion: 0,
         readyForTest: 0,
         blocked: 0,
-        closed: 0,
+        // closed: 0,
         assignees: []
     }
 }
@@ -174,8 +174,8 @@ function updateRecord(ticket, projects, total) {
             break;
         case "6":
         case "10038":
-            project.closed++;
-            total.closed++;
+            // project.closed++;
+            // total.closed++;
             break;
         default:
             // console.log(ticket.key);

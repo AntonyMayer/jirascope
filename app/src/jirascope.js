@@ -26,7 +26,8 @@ class Jirascope {
         this.teams = {
             dev: ['dan.granata', 'constantin.pojoga', 'william.ramirez', 'eric.nesser', 'brandon.houghton', 'kyle.mcdonald', 'adrian.kopczewski', 'anton.kuzniatsou', 'matt.wade'],
             qa: ['shelby.jones', 'luke.smarto', 'vasyl.stetsyuk', 'patrick.finn', 'alejandro.molina', 'alyssa.carabez'],
-            cp: ['jack.white', 'brian.menard', 'anton.kuzniatsou']
+            cp: ['jack.white', 'brian.menard'],
+            pm: ['jeremy.primm', 'joe.machak', 'meghan.turnure']
         }
         this.params = {
             status: [],
