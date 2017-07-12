@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Checkbox from './Checkbox';
+import Loader from '../Loader/Loader';
 import Jirascope from '../../jirascope';
 import './scss/Filters.css';
 
@@ -15,8 +16,10 @@ class TeamsFilter extends Component {
 
   componentDidMount() {
     for (let i = 0, len = this.teams.length; i < len; i++) {
+        //check if flag is set to true
+        //if first visit => check only first flag (i.e. => dev team)
         if (localStorage.getItem(this.teams[i].id) === "true" ||
-            localStorage.getItem(this.teams[i].id) === null) {
+            (i === 0 && localStorage.getItem(this.teams[i].id) === null)) {
             this.teams[i].checked = true;
         }
     }
@@ -32,17 +35,9 @@ class TeamsFilter extends Component {
         } else localStorage.setItem(this.teams[i].id, false);
     } 
 
-    //avoid empty array
+    //if none cheked => return all data
     if(!teamsArr.length) {
-        teamsArr = [];
-        for (var i = 0, len = this.teams.length; i < len; i++) {
-            this.teams[i].checked = true;
-            localStorage.setItem(this.teams[i].id, true);
-        }  
-        //concat all teams into one array to display all
-        for (let team in Jirascope.teams) {
-            teamsArr = teamsArr.concat(Jirascope.teams[team]);
-        }
+        Jirascope.getData();
     }
 
     Jirascope.updateAssigneeList(teamsArr);
@@ -52,7 +47,8 @@ class TeamsFilter extends Component {
   render() {
     return (
         <div className="filter filter--tables">
-            <p className="filter__title"><b>TEAMS</b> &#9658;</p>
+            <Loader />
+            <p className="filter__title"><b className="filter__group">TEAMS</b> &#9658;</p>
             <div className="filter__update" onChange={this.updateFilter}>
                 <Checkbox id="dev" group="team" />
                 <Checkbox id="qa" group="team" />

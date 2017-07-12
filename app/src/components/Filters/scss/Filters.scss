@@ -1,9 +1,9 @@
 $spacing: .8rem;
-
 .filter {
     display: inline-block;
     margin: $spacing;
 }
+
 .filter__unit {
     display: inline-block;
     margin: 0 $spacing;
@@ -15,6 +15,11 @@ $spacing: .8rem;
 
 .filter__title {
     display: inline-block;
+}
+
+.filter__group {
+    display: inline-block;
+    width: 65px;
 }
 
 .filter__checkbox {

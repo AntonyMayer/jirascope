@@ -22,10 +22,6 @@ class Table extends Component {
     this.updateInfo = this.updateInfo.bind(this);
   }
 
-  componentDidMount() {
-    this.updateInfo();
-  }
-
   componentWillUpdate() {
     this.updateInfo();
   }
