@@ -6,7 +6,7 @@ import Jirascope from '../../jirascope';
 import Table from '../Table/Table';
 import TeamsFilter from '../Filters/Teams';
 
-//widgets
+//widgets (modules to process data)
 import ticketsByProject from '../../widgets/ticketsByProject';
 import ticketsByAssignee from '../../widgets/ticketsByAssignee';
 
@@ -31,8 +31,6 @@ class Page extends Component {
   }
 
   watchGlobalState() {
-    // console.log('this');
-    // Jirascope.getData();
     this.setState({
       current: Jirascope.search.current
     });

@@ -133,7 +133,6 @@ class Jirascope {
     updateLoop() {
         this.getData();
         setInterval(_=> {
-            console.log('this');
             this.getData();      
         }, 3000)
     }

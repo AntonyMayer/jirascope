@@ -98,14 +98,22 @@ Fetch data from `MongoDB` and provide data for Table sorted by assignee.
 2. `Node Express` server listen for GET requests
 
 2.1. Based on GET request params do the query to `MongoDB`
+
 2.2. Send back the data from `MongoDB` to `React app`
 
 3. `Raect app`
 
 3.1. Creates a page layout
-3.2. Every 3000 ms send request to server for updates via calling `Jirascope.updateLoop()`
 
-**Use** `Jirascope.getData();` to fetch data from server and trigger global update
+3.2. Every 3000 ms send request to server for updates via `Jirascope.updateLoop()` (called in `Page` Cpmponent on `componentDidMount`)
+
+3.4. Filters do URL update and call `Jirascope.getData();`
+
+4. `Jirascope`
+
+4.1. On init checks current URL for GET params, if empty uses defaults from `Jirascope.search.default`
+
+4.2. `Jirascope.getData();` to fetch data from server and trigger global update
 
 ## Express API
 
