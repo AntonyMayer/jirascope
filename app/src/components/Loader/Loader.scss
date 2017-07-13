@@ -1,10 +1,3 @@
-@mixin animateIt() {
-    animation: update-start linear .4s;
-    &:before {
-        animation: loading-start linear 4.5s;
-    }
-}
-
 .loader {
     margin-bottom: .8rem;
 }
@@ -19,34 +12,26 @@
     margin: 0 .8rem;
     position: relative;
     &--update-start {
-        @include animateIt();
+        &:before {
+            animation: loading-start linear 4.5s;
+        }
     }
     &--update-end {
-        @include animateIt();
+        &:before {
+            animation: loading-end linear 4.5s;
+        }
     }
     &:before {
         background: #fff;
         bottom: -1px;
         content: '';
         display: block;
-        height: 2px;
+        height: 1px;
         position: absolute;
     }
 }
 
-/**
- * Animations
- */
-
 @mixin animate($name) {
-    @keyframes update-#{$name} {
-        0% {
-            transform: scale(1.15);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
     @keyframes loading-#{$name} {
         0% {
             width: 0%;
