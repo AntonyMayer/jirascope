@@ -10,13 +10,23 @@ class Row extends Component {
     };
 
     this.toggleRowVisibility = this.toggleRowVisibility.bind(this);
-    this.modifierVisability = `${this.props.selectors.row}--open`;
+    this.checkVisibility = this.checkVisibility.bind(this);
+
+    //set default row visibility (except first row with headers)
+    this.projectKey = this.props.data[1].toString();
+    this.rowKey = this.props.data[0].toString();
+    this.checkVisibility();
+    
 
     this.processData();
   }
 
+  componentDidUpdate() {
+    this.checkVisibility()
+;  }
+
   processData() {
-    //accepts array and builds rows for tables
+    //accepts array 
     this.data = this.props.data.map((element, index) => {
         if (Number(element) < 1) {
             return (
@@ -43,17 +53,61 @@ class Row extends Component {
   toggleRowVisibility() { 
     if (this.state.open) {
         this.modifierVisability = `${this.props.selectors.row}--closed`;
+        localStorage.setItem(`row--${this.rowKey}`, `closed`);
+        localStorage.setItem(`column--${this.projectKey}`, `closed`);
+        this.columnVisability(false);
         this.setState({
             date: new Date(),
             open: false
         });
     } else {
         this.modifierVisability = `${this.props.selectors.row}--open`;
+        localStorage.removeItem(`row--${this.rowKey}`);
+        localStorage.removeItem(`column--${this.projectKey}`);
+        this.columnVisability(true);
         this.setState({
             date: new Date(),
             open: true
         });
     }
+  }
+
+  checkVisibility() {
+    if (localStorage.getItem(`row--${this.rowKey}`) === `closed` && Number(this.props.rowIndex) > 0) {
+        this.modifierVisability = `${this.props.selectors.row}--closed`;
+        this.state.open = false;
+        // this.columnVisability(false);
+    } else {
+        this.modifierVisability = `${this.props.selectors.row}--open`;
+    }
+  }
+
+  columnVisability(visible) {
+    let table = document.getElementsByClassName(`${this.props.selectors.table}--assignees`)[0],
+        headersRow = table.getElementsByClassName(`${this.props.selectors.row}`)[0],
+        headersValues = headersRow.getElementsByClassName(`${this.props.selectors.cell}`),
+        rows = table.getElementsByClassName(`${this.props.selectors.row}`),
+        columnIndex = -1;
+
+        //find project column index
+        for (var i = 0, len = headersValues.length; i < len; i++) {
+            if (headersValues[i].innerText === this.projectKey) {
+                columnIndex = i;
+                break;
+            }
+        }
+
+        if (columnIndex < 0) return;
+
+        //hide all cells with that index
+        for (var i = 0, len = rows.length; i < len; i++) {
+            let cells = rows[i].getElementsByClassName(this.props.selectors.cell);
+            if (visible) {
+                cells[columnIndex].classList.remove(`${this.props.selectors.cell}--hidden`);
+            } else {
+                cells[columnIndex].classList.add(`${this.props.selectors.cell}--hidden`);            
+            }
+        }
   }
 
   render() {

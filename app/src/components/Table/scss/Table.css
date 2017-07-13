@@ -57,6 +57,12 @@
     border-right: 1px solid #fff; }
   .b_table__cell--zero {
     color: rgba(255, 255, 255, 0.3); }
+  .b_table__cell--hidden {
+    width: 0;
+    overflow: 0;
+    padding: 0;
+    font-size: 0;
+    background: #fff; }
   .b_table__cell:nth-of-type(1) {
     background: rgba(0, 0, 0, 0.1);
     font-weight: bold;

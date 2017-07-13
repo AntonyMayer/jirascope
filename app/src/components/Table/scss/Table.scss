@@ -75,6 +75,13 @@ $spacing: .8rem;
     &--zero {
         color: rgba(255, 255, 255, .3);
     }
+    &--hidden {
+        width: 0;
+        overflow: 0;
+        padding: 0;
+        font-size: 0;
+        background: #fff;
+    }
     &:nth-of-type(1) {
         background: rgba(0, 0, 0, .1);
         font-weight: bold;

@@ -14,8 +14,6 @@ class Loader extends Component {
             date: new Date(),
             modifier: "loader__time--update-start"
         }
-        console.log(this.state.modifier);
-        
     }
 
     endUpdate() {
