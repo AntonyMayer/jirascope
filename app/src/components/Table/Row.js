@@ -22,8 +22,8 @@ class Row extends Component {
   }
 
   componentDidUpdate() {
-    this.checkVisibility()
-;  }
+    this.checkVisibility();  
+  }
 
   processData() {
     //accepts array 
