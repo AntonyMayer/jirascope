@@ -20,21 +20,17 @@
 
 @keyframes update-start {
     0% {
-        color: rgba(255,0,0,.4);
         transform: scale(1.15);
     }
     100% {
-        color: rgba(255,255,255,1);
         transform: scale(1);        
     }
 }
 @keyframes update-end {
     0% {
-        color: rgba(255,0,0,.4);
         transform: scale(1.15);
     }
     100% {
-        color: rgba(255,255,255,1);
         transform: scale(1);        
     }
 }
