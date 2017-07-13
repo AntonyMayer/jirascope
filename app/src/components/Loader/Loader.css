@@ -7,20 +7,55 @@
 
 .loader__time {
   display: inline-block;
-  margin: 0 .8rem; }
+  margin: 0 .8rem;
+  position: relative; }
   .loader__time--update-start {
-    animation: update-start .8s; }
+    animation: update-start linear .4s; }
+    .loader__time--update-start:before {
+      animation: loading-start linear 4.5s; }
   .loader__time--update-end {
-    animation: update-end .8s; }
+    animation: update-start linear .4s; }
+    .loader__time--update-end:before {
+      animation: loading-start linear 4.5s; }
+  .loader__time:before {
+    background: #fff;
+    bottom: -1px;
+    content: '';
+    display: block;
+    height: 2px;
+    position: absolute; }
 
+/**
+ * Animations
+ */
 @keyframes update-start {
   0% {
     transform: scale(1.15); }
   100% {
     transform: scale(1); } }
 
+@keyframes loading-start {
+  0% {
+    width: 0%;
+    opacity: 1; }
+  70% {
+    opacity: 1; }
+  100% {
+    width: 100%;
+    opacity: 0; } }
+
 @keyframes update-end {
   0% {
     transform: scale(1.15); }
   100% {
     transform: scale(1); } }
+
+@keyframes loading-end {
+  0% {
+    width: 0%;
+    opacity: 1; }
+  70% {
+    opacity: 1; }
+  100% {
+    width: 100%;
+    opacity: 0; } }

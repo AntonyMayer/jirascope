@@ -90,7 +90,7 @@ class Row extends Component {
         columnIndex = -1;
 
         //find project column index
-        for (var i = 0, len = headersValues.length; i < len; i++) {
+        for (let i = 0, len = headersValues.length; i < len; i++) {
             if (headersValues[i].innerText === this.projectKey) {
                 columnIndex = i;
                 break;
@@ -100,7 +100,7 @@ class Row extends Component {
         if (columnIndex < 0) return;
 
         //hide all cells with that index
-        for (var i = 0, len = rows.length; i < len; i++) {
+        for (let i = 0, len = rows.length; i < len; i++) {
             let cells = rows[i].getElementsByClassName(this.props.selectors.cell);
             if (visible) {
                 cells[columnIndex].classList.remove(`${this.props.selectors.cell}--hidden`);
