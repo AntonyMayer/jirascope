@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Jirascope from '../../jirascope';
 import './Loader.css';
 
 class Loader extends Component {
@@ -8,27 +7,38 @@ class Loader extends Component {
         this.data = '0';
 
         //listen to global updates
-        
         this.endUpdate = this.endUpdate.bind(this);
         window.addEventListener('globalUpdate', this.endUpdate);
 
         this.state = {
-            date: new Date()
+            date: new Date(),
+            modifier: "loader__time--update-start"
         }
+        console.log(this.state.modifier);
+        
     }
 
     endUpdate() {
         this.data = this.state.date.toLocaleTimeString();
-        this.setState({
-            date: new Date()
-        });
+
+        if (this.state.modifier === "loader__time--update-start") {
+            this.setState({
+                date: new Date(),
+                modifier: "loader__time--update-end"
+            });
+        } else {
+            this.setState({
+                date: new Date(),
+                modifier: "loader__time--update-start"
+            });
+        }
     }
 
     render() {
         return (
             <div className = "loader">
                 <b className="loader__title">UPATED</b> &#9658; 
-                <b className="loader__time">{this.data}</b>
+                <b className={`loader__time ${this.state.modifier}`}>{this.data}</b>
             </div>
         );  
     }

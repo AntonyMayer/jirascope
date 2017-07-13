@@ -8,3 +8,23 @@
 .loader__time {
   display: inline-block;
   margin: 0 .8rem; }
+  .loader__time--update-start {
+    animation: update-start .8s; }
+  .loader__time--update-end {
+    animation: update-end .8s; }
+
+@keyframes update-start {
+  0% {
+    color: rgba(255, 0, 0, 0.4);
+    transform: scale(1.15); }
+  100% {
+    color: white;
+    transform: scale(1); } }
+
+@keyframes update-end {
+  0% {
+    color: rgba(255, 0, 0, 0.4);
+    transform: scale(1.15); }
+  100% {
+    color: white;
+    transform: scale(1); } }

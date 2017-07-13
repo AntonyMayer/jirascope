@@ -38,7 +38,7 @@ class Page extends Component {
 
   render() {
     return (
-      <div>
+      <div className="jirascope">
           <TeamsFilter />
           <Table widget={ticketsByProject} classModifier="projects"/> 
           <Table widget={ticketsByAssignee} classModifier="assignees"/>
