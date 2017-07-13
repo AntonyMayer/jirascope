@@ -31,7 +31,8 @@ class Jirascope {
         }
         this.params = {
             status: [],
-            assignee: this.teams.dev.concat(this.teams.qa).concat(this.teams.cp)
+            assignee: this.teams.dev.concat(this.teams.qa).concat(this.teams.cp),
+            updateRate: 5000 
         }
         this.search = {
             default: `?status=${this.params.status.join('+')}&assignee=${this.params.assignee.join('+')}`,
@@ -134,7 +135,7 @@ class Jirascope {
         this.getData();
         setInterval(_=> {
             this.getData();      
-        }, 3000)
+        }, this.params.updateRate)
     }
 
     //get params from location

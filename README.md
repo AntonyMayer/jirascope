@@ -4,7 +4,7 @@
 
 |Description|Port|
 |---|---|
-|Dev|3000|
+|Dev|5000|
 |Proxy|3311|
 
 **App & Config & namespace object** 
@@ -89,7 +89,7 @@ Fetch data from `MongoDB` and provide data for Table sorted by assignee.
 
 1.1. On first iteration it iterates all jira issues
 
-1.2. All next iterations (every 3000 ms) => iterate only issues updated within last 60 mins
+1.2. All next iterations (every 5000 ms) => iterate only issues updated within last 60 mins
 
 1.3. On each iteration perform `MongoDB` update via `upsert`
 
@@ -103,7 +103,7 @@ Fetch data from `MongoDB` and provide data for Table sorted by assignee.
 
 3.1. Creates a page layout
 
-3.2. Every 3000 ms send request to server for updates via `Jirascope.updateLoop()` (called in `Page` Cpmponent on `componentDidMount`)
+3.2. Every 5000 ms send request to server for updates via `Jirascope.updateLoop()` (called in `Page` Cpmponent on `componentDidMount`)
 
 3.4. Filters do URL update and call `Jirascope.getData();`
 
