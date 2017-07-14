@@ -55,6 +55,8 @@ Builds Tables. Contains all css selectors for Table and its elements.
 
 ### Rows
 
+*TODO: columns visability*
+
 Builds rows for Table.
 
 `props.data` - array containing data for the row
