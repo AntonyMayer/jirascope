@@ -5,14 +5,14 @@ class Row extends Component {
     super(props);
     
     this.state = {
-      date: new Date()
+      date: new Date(),
+      open: true
     };
 
-    //determine if row is visible => true by default 
-    this.rowIsVisible = true;
-
+    //bind methods to avoid 'this' issues while recursive/repetative calls
     this.toggleRowVisibility = this.toggleRowVisibility.bind(this);
     this.checkVisibility = this.checkVisibility.bind(this);
+    this.columnVisability = this.columnVisability.bind(this);
 
     //set default row visibility (except first row with headers)
     this.projectKey = this.props.data[1].toString();
@@ -57,34 +57,35 @@ class Row extends Component {
         this.modifierVisability = `${this.props.selectors.row}--closed`;
         localStorage.setItem(`row--${this.rowKey}`, `closed`);
         localStorage.setItem(`column--${this.projectKey}`, `closed`);
-        this.columnVisability(false);
+        // this.columnVisability(false);
         this.setState({
-            date: new Date()
+            date: new Date(),
+            open: false
         });
-        this.rowIsVisible = false;
     } else {
         this.modifierVisability = `${this.props.selectors.row}--open`;
         localStorage.removeItem(`row--${this.rowKey}`);
         localStorage.removeItem(`column--${this.projectKey}`);
         this.columnVisability(true);
         this.setState({
-            date: new Date()
+            date: new Date(),
+            open: true
         });
-        this.rowIsVisible = true;        
     }
   }
 
   checkVisibility() {
     if (localStorage.getItem(`row--${this.rowKey}`) === `closed` && Number(this.props.rowIndex) > 0) {
         this.modifierVisability = `${this.props.selectors.row}--closed`;
-        this.rowIsVisible = false;
-        // this.columnVisability(false);
+        this.state.open = false;
+        this.columnVisability(false);
     } else {
         this.modifierVisability = `${this.props.selectors.row}--open`;
     }
   }
 
   columnVisability(visible) {
+    console.log(this);
     let table = document.getElementsByClassName(`${this.props.selectors.table}--assignees`)[0],
         headersRow = table.getElementsByClassName(`${this.props.selectors.row}`)[0],
         headersValues = headersRow.getElementsByClassName(`${this.props.selectors.cell}`),
