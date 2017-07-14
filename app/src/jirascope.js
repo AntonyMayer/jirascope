@@ -68,23 +68,11 @@ class Jirascope {
     updateStatusList(array) {
         this.params.status = array;
     }
-    addStatus(status) {
-        this.params.status.push(status);
-    }
-    clearStatus() {
-        this.params.status = [];
-    }
 
     //assignee methods
     updateAssigneeList(array) {
         this.params.assignee = array;
         this.updateState();
-    }
-    addAssignee(assignee) {
-        this.params.assignee.push(assignee);
-    }
-    clearAssignees() {
-        this.params.assignee = [];
     }
 
     //history and location manipulations
