@@ -5,9 +5,11 @@ class Row extends Component {
     super(props);
     
     this.state = {
-      date: new Date(),
-      open: true
+      date: new Date()
     };
+
+    //determine if row is visible => true by default 
+    this.rowIsVisible = true;
 
     this.toggleRowVisibility = this.toggleRowVisibility.bind(this);
     this.checkVisibility = this.checkVisibility.bind(this);
@@ -57,25 +59,25 @@ class Row extends Component {
         localStorage.setItem(`column--${this.projectKey}`, `closed`);
         this.columnVisability(false);
         this.setState({
-            date: new Date(),
-            open: false
+            date: new Date()
         });
+        this.rowIsVisible = false;
     } else {
         this.modifierVisability = `${this.props.selectors.row}--open`;
         localStorage.removeItem(`row--${this.rowKey}`);
         localStorage.removeItem(`column--${this.projectKey}`);
         this.columnVisability(true);
         this.setState({
-            date: new Date(),
-            open: true
+            date: new Date()
         });
+        this.rowIsVisible = true;        
     }
   }
 
   checkVisibility() {
     if (localStorage.getItem(`row--${this.rowKey}`) === `closed` && Number(this.props.rowIndex) > 0) {
         this.modifierVisability = `${this.props.selectors.row}--closed`;
-        this.state.open = false;
+        this.rowIsVisible = false;
         // this.columnVisability(false);
     } else {
         this.modifierVisability = `${this.props.selectors.row}--open`;
