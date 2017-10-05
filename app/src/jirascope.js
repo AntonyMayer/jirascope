@@ -24,7 +24,16 @@ class Jirascope {
     constructor() {
         //default teams
         this.teams = {
-            dev: ['dan.granata', 'constantin.pojoga', 'william.ramirez', 'eric.nesser', 'brandon.houghton', 'kyle.mcdonald', 'adrian.kopczewski', 'anton.kuzniatsou', 'matt.wade'],
+            dev: ['dan.granata', 
+            'constantin.pojoga', 
+            'william.ramirez', 
+            'eric.nesser', 
+            'brandon.houghton', 
+            'kyle.mcdonald', 
+            'adrian.kopczewski', 
+            'anton.kuzniatsou', 
+            'matt.wade',
+            'josefina.terrera'],
             qa: ['shelby.jones', 'luke.smarto', 'vasyl.stetsyuk', 'patrick.finn', 'alejandro.molina', 'alyssa.carabez'],
             cp: ['jack.white', 'brian.menard'],
             pm: ['jeremy.primm', 'joe.machak', 'meghan.turnure']

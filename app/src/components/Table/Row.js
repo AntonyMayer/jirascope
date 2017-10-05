@@ -13,7 +13,7 @@ class Row extends Component {
     this.checkVisibility = this.checkVisibility.bind(this);
 
     //set default row visibility (except first row with headers)
-    this.projectKey = this.props.data[1].toString();
+    this.projectKey = this.props.data[1] ? this.props.data[1].toString() : Math.random();
     this.rowKey = this.props.data[0].toString();
     this.checkVisibility();
     
