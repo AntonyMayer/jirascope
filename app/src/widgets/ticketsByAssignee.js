@@ -85,7 +85,7 @@ function checkTicketStatus(ticket) {
         status !== 4 &&
         status !== 10008 &&
         status !== 10037 &&
-        status !== 10076 &&
+        // status !== 10076 &&    // show/hide "Dev in progress tickets"
         status !== 10976 &&
         status !== 10977 &&
         status !== 11276) {
