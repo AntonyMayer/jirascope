@@ -1,0 +1,94 @@
+.b_table {
+  border: 10px solid #fff;
+  border-spacing: 0px;
+  box-shadow: 0 0 2.3rem #777;
+  display: table;
+  margin: 1.6rem auto;
+  overflow: hidden; }
+
+.b_table__title {
+  margin: 0.8rem;
+  text-align: left;
+  text-shadow: 0 0 2.3rem #777;
+  text-transform: uppercase; }
+
+.b_table__row {
+  cursor: pointer;
+  display: table-row;
+  transition: all .8s;
+  position: relative; }
+  .b_table__row:before {
+    display: block;
+    content: '+';
+    padding: .8rem;
+    background: #fff;
+    position: absolute;
+    left: -3rem;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 0 2.3rem #777;
+    transition: all .8s; }
+  .b_table__row:hover {
+    background: rgba(0, 0, 0, 0.4);
+    transition: all .2s; }
+  .b_table__row:nth-of-type(1),
+  .b_table--projects .b_table__row:nth-last-of-type(1) {
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: none; }
+  .b_table__row--closed {
+    background: #fff; }
+    .b_table__row--closed:before {
+      left: 0;
+      color: #10543D;
+      opacity: 1;
+      pointer-events: all; }
+
+.b_table__cell {
+  border-top: 1px solid #fff;
+  display: table-cell;
+  padding: 0.8rem;
+  position: relative;
+  text-align: center;
+  transition: all .8s; }
+  .b_table__cell--red {
+    background: rgba(255, 0, 0, 0.4);
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff; }
+  .b_table__cell--zero {
+    color: rgba(255, 255, 255, 0.3); }
+  .b_table__cell--hidden {
+    width: 0;
+    overflow: 0;
+    padding: 0;
+    font-size: 0;
+    background: #fff; }
+  .b_table__cell:nth-of-type(1) {
+    background: rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    text-align: left; }
+    .b_table--assignees .b_table__cell:nth-of-type(1) {
+      border-right: 1px solid #fff; }
+  .b_table--projects .b_table__cell:nth-of-type(2) {
+    background: rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #fff;
+    font-weight: bold;
+    text-align: left; }
+  .b_table__row--closed .b_table__cell {
+    background: #fff;
+    border: none;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    font-size: 0; }
+  .b_table__cell:hover:before {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid #fff;
+    content: '';
+    display: block;
+    left: -1px;
+    height: 400vh;
+    position: absolute;
+    top: -200vh;
+    width: calc(100% + 1px);
+    z-index: -1; }

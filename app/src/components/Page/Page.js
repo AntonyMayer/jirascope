@@ -5,10 +5,12 @@ import Jirascope from '../../jirascope';
 //components
 import Table from '../Table/Table';
 import TeamsFilter from '../Filters/Teams';
+import Graph from '../Graph/Graph';
 
 //widgets (modules to process data)
 import ticketsByProject from '../../widgets/ticketsByProject';
 import ticketsByAssignee from '../../widgets/ticketsByAssignee';
+import graphProjects from '../../widgets/graphProjects';
 
 //css
 import './scss/Page.css';
@@ -39,9 +41,10 @@ class Page extends Component {
   render() {
     return (
       <div className="jirascope">
-          <TeamsFilter />
+          {/* <TeamsFilter />
           <Table widget={ticketsByProject} classModifier="projects"/> 
-          <Table widget={ticketsByAssignee} classModifier="assignees"/>
+          <Table widget={ticketsByAssignee} classModifier="assignees"/> */}
+          <Graph widget={graphProjects} classModifier="projects"/>
       </div>
     );
   }
