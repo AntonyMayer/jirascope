@@ -29,6 +29,7 @@ class Jirascope {
             'william.ramirez', 
             'eric.nesser', 
             'brandon.houghton', 
+            'kevin.middlesworth',
             'kyle.mcdonald', 
             'adrian.kopczewski', 
             'anton.kuzniatsou', 

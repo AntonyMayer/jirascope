@@ -5,6 +5,8 @@
   display: table;
   margin: 1.6rem auto;
   overflow: hidden; }
+  .fireworks .b_table {
+    background: linear-gradient(to right, #25c481, #25b7c4); }
 
 .b_table__title {
   margin: 0.8rem;
