@@ -30,8 +30,10 @@ class Row extends Component {
     this.data = this.props.data.map((element, index) => {
         
         // firework trick
-        if (Number(element) >= 100 && this.projectKey === "CHWO") {
+        if (Number(element) >= 100 && this.projectKey !== "-") {
             document.body.classList.add('fireworks'); 
+        } else {
+            document.body.classList.remove('fireworks'); 
         }
 
         if (Number(element) < 1) {
