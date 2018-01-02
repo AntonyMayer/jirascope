@@ -1,3 +1,5 @@
+![screen shot](https://raw.githubusercontent.com/AntonyMayer/jirascope/master/screenshot.png "Screen shot")
+
 ## Notes
 
 **Ports**
