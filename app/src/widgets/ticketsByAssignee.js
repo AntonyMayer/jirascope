@@ -1,3 +1,5 @@
+import exception from '../exceptions/exceptions'
+
 export default function(tickets) {
     // console.log(tickets);
     if (tickets.status) {
@@ -28,11 +30,13 @@ export default function(tickets) {
      */
     tickets.forEach(function(ticket) {
         if (checkTicketStatus(ticket)) {
-            if (!assignees[ticket.fields.assignee.key]) {
+            if (!assignees[ticket.fields.assignee.key] && !exception(ticket.fields.project.key)) {
                 createRecord(assignees, ticket.fields.assignee.key);
             }
-            createHeader(headers, ticket.fields.project.key);
-            updateRecord(assignees, ticket.fields.assignee.key, ticket.fields.project.key);
+            if (!exception(ticket.fields.project.key)) {
+                createHeader(headers, ticket.fields.project.key);
+                updateRecord(assignees, ticket.fields.assignee.key, ticket.fields.project.key);
+            }
         }
     });
 

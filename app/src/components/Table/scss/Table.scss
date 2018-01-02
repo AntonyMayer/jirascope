@@ -9,6 +9,10 @@ $spacing: .8rem;
     display: table;
     margin: $spacing*2 auto;
     overflow: hidden;
+
+    .fireworks & {
+        background: linear-gradient(to right, #25c481, #25b7c4);;
+    }
 }
 
 .b_table__title {

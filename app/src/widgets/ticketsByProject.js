@@ -1,3 +1,5 @@
+import exception from '../exceptions/exceptions'
+
 export default function(tickets) {
     if (tickets.status) {
         return [
@@ -33,10 +35,10 @@ export default function(tickets) {
 
     //create project and its counters
     tickets.forEach(ticket => {
-        if (!projects[ticket.fields.project.key]) {
+        if (!projects[ticket.fields.project.key] && !exception(ticket.fields.project.key)) {
             createRecord(ticket, projects);
             updateRecord(ticket, projects, total);
-        } else {
+        } else if (!exception(ticket.fields.project.key)) {
             updateRecord(ticket, projects, total);
         }
     });

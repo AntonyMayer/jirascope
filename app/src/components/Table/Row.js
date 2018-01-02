@@ -28,6 +28,14 @@ class Row extends Component {
   processData() {
     //accepts array 
     this.data = this.props.data.map((element, index) => {
+        
+        // firework trick
+        if (Number(element) >= 100 && this.projectKey !== "-") {
+            document.body.classList.add('fireworks'); 
+        } else {
+            document.body.classList.remove('fireworks'); 
+        }
+
         if (Number(element) < 1) {
             return (
                 <div className={`${this.props.selectors.cell} ${this.props.selectors.cell}--zero`} key={(this.props.rowIndex + index).toString()}>
