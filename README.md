@@ -115,7 +115,7 @@ Fetch data from `MongoDB` and provide data for Table sorted by assignee.
 
 2.2. Send back the data from `MongoDB` to `React app`
 
-3. `Raect app`
+3. `React app`
 
 3.1. Creates a page layout
 
@@ -129,12 +129,12 @@ Fetch data from `MongoDB` and provide data for Table sorted by assignee.
 
 4.2. `Jirascope.getData();` to fetch data from server and trigger global update
 
-## Express API
+## API
 
 **Tickets**
 
 |  Request | Description  |
 |---|---|
-| /api/tickets  | return json with all tickets  |
-| /api/tickets?status=XXX  | return all tickets with status id XXX (*1 = open, 4 = reopen and etc*)  |
-| /api/tickets?assignee=XXX  | return all tickets with assignee key XXX (*anton.kuzniatsou and etc*)  |
+| /tickets  | return json with all tickets  |
+| /tickets?status=XXX  | return all tickets with status id XXX (*1 = open, 4 = reopen and etc*)  |
+| /tickets?assignee=XXX  | return all tickets with assignee key XXX (*anton.kuzniatsou and etc*)  |
