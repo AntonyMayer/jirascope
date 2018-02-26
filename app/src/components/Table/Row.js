@@ -83,7 +83,10 @@ class Row extends Component {
   checkVisibility() {
     if (localStorage.getItem(`row--${this.rowKey}`) === `closed` && Number(this.props.rowIndex) > 0) {
         this.modifierVisability = `${this.props.selectors.row}--closed`;
-        this.state.open = false;
+        if (this.state.open) this.setState({
+            date: new Date(),
+            open: false
+        });
         // this.columnVisability(false);
     } else {
         this.modifierVisability = `${this.props.selectors.row}--open`;
