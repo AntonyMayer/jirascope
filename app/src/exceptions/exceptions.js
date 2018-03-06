@@ -5,7 +5,14 @@
  */
 
 const BAN_LIST = [
-    'CDMJT'
+    'CDMJT',
+    'SWD',
+    'SMBDI',
+    'SMCD',
+    'SMFKK',
+    'SMIDIG',
+    'SUCGT',
+    'SMSL',
 ]
 
 export default function exception(projectName) {
