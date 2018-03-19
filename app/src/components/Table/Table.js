@@ -42,7 +42,7 @@ class Table extends Component {
      */
     this.data = tmpData.map((row, index) => {
         return (
-          <Row data={row} selectors={this.selectors} rowIndex={index} key={row.toString()} />
+          <Row data={row} selectors={this.selectors} rowIndex={index} key={index} />
         );
     });
   }
